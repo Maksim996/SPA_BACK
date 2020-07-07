@@ -27,5 +27,18 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+
+        // Define Scope
+        Passport::tokensCan([
+            'super-root' => 'Add/Edit/Delete user',
+            'root' => 'Make description',
+            'manager' => 'Make description',
+            'doctor' => 'Make description'
+        ]);
+
+        // Default Scope
+        Passport::setDefaultScope([
+            'doctor'
+        ]);
     }
 }

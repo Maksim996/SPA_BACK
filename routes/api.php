@@ -20,3 +20,11 @@ Route::post('/register', function (Request $request) {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', 'AuthController@login');
+
+Route::middleware(['auth:api', 'role'])->group(function() {
+    Route::middleware(['scope: super-root, root, admin, doctor'])
+        ->get('logout', 'AuthController@logout');
+
+});
