@@ -30,10 +30,12 @@ class AuthServiceProvider extends ServiceProvider
 
         // Define Scope
         Passport::tokensCan([
-            'super-root' => 'Add/Edit/Delete user',
-            'root' => 'Make description',
-            'manager' => 'Make description',
-            'doctor' => 'Make description'
+            'root' => 'Add/Edit/Delete directors',
+            'director' => 'Make description',
+            'supervisor' => 'Make description',
+            'administrator' => 'Make description',
+            'doctor' => 'Make description',
+            'medical_representative' => 'Make description',
         ]);
 
         // Default Scope

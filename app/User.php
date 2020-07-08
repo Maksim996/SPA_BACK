@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    /**
+     * Get user info associated with the user.
+     */
+    public function info()
+    {
+        return $this->hasOne('App\Info', 'id');
+    }
 }
