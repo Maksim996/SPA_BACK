@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
             'remember_token' => Str::random(10),
             'role_id' => 1,
             'created_at' => now(),
+            'info_id' => 1,
         ]);
     }
 }
