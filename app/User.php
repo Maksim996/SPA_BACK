@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    const DIRECTOR = 2;
+    const ADMIN = 3;
     /**
      * The attributes that are mass assignable.
      *
@@ -51,6 +53,6 @@ class User extends Authenticatable
      */
     public function info()
     {
-        return $this->hasOne('App\Info', 'id');
+        return $this->hasOne('App\Info');
     }
 }

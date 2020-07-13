@@ -12,6 +12,7 @@ class UserInfoSeeder extends Seeder
     public function run()
     {
         DB::table('user_info')->insert([
+            'user_id' => '1',
             'first_name' => 'Admin',
             'second_name' => 'admin',
             'patronymic' => 'admin',

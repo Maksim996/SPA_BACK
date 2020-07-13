@@ -13,18 +13,22 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/register', function (Request $request) {
-   return response()->json($request->all());
-});
+// Route::post('/register', function (Request $request) {
+//    return response()->json($request->all());
+// });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::post('login', 'AuthController@login');
 
 Route::middleware(['auth:api', 'role'])->group(function() {
-    Route::middleware(['scope: super-root, root, admin, doctor'])
+    Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
         ->get('logout', 'AuthController@logout');
 
+    Route::middleware(['scope:root'])
+        ->post('create-director', 'API\UserController@createDirector');
+    Route::middleware(['scope:root'])
+        ->get('index', 'API\UserController@index');
 });

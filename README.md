@@ -1,11 +1,27 @@
 ## APIs
 
-prefix `api/`
+- prefix `api/`
+- example errors
+
+```
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "key": [
+      "The passport has already been taken."
+    ],
+    "inn_code": [
+      "The inn code has already been taken."
+    ]
+  }
+}
+```
 
 method   | url | description
 -------------  | -------------  | -------------
 POST | login | auth user
-GET   | logout | logout
+GET   | logout | logout 
+POST   | create-director | create user with role director
 
 
 ## Errors

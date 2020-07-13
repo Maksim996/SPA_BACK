@@ -15,6 +15,7 @@ class CreateUserInfoTable extends Migration
     {
         Schema::create('user_info', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('first_name');
             $table->string('second_name');
             $table->string('patronymic');
@@ -27,6 +28,8 @@ class CreateUserInfoTable extends Migration
             $table->text('image')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
