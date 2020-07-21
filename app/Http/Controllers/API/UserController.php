@@ -9,6 +9,10 @@ use App\Info;
 use Illuminate\Http\Request;
 // use App\Http\Requests\UserStore;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResource;
 
 class UserController extends Controller
 {
@@ -19,8 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['info', 'role'])->get();
-        return $users;
+        return UsersResource::collection(User::all());
     }
     /**
      * Create User with role Director
@@ -76,6 +79,64 @@ class UserController extends Controller
         $user->info()->save($info);
 
         return response()->json(['message' => 'User added successfully!']);
+    }
+
+    /**
+     * get user data
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getUser($id)
+    {
+        try {
+            return new UserResource(User::findOrFail($id));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'User not found.'], 404);
+        }
+
+    }
+
+    /**
+     * Update user with role director
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  \App\User  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDirector(Request $request, $id)
+    {
+        try {
+            $model = User::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'User not found.'], 403);
+        }
+
+        // ! validation
+
+        $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
+
+        $model->info()->update([
+            'first_name' => $request->first_name,
+            'second_name' => $request->second_name,
+            'patronymic' => $request->patronymic,
+            'birthday' => $birthday,
+            'sex' => $request->sex,
+            'phone' => $request->phone,
+            'additional_phone' => $request->additional_phone,
+            'passport' => $request->passport,
+            'inn_code' => $request->inn_code,
+            'image' => $request->image ? $request->image : $model->info->image, // ?
+        ]);
+        $model->save();
+
+        $model->update([
+            'email' => $request->email,
+        ]);
+
+        $model->save();
+
+        return response()->json(['message' => 'User updated successfully.']);
     }
 
     /**

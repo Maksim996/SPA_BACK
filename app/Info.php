@@ -31,4 +31,18 @@ class Info extends Model
         'image',
         'description'
     ];
+
+    // protected $casts = [
+    //     'birthday' => 'date:Y-m-d',
+    // ];
+
+    /**
+     * Get user's full name
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->second_name} {$this->first_name} {$this->patronymic}";
+    }
 }

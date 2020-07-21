@@ -31,4 +31,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         ->post('create-director', 'API\UserController@createDirector');
     Route::middleware(['scope:root'])
         ->get('index', 'API\UserController@index');
+    Route::middleware(['scope:root'])->get('get-user/{userId}', 'API\UserController@getUser');
+    Route::middleware(['scope:root'])
+        ->put('update-director/{id}', 'API\UserController@updateDirector');
 });
