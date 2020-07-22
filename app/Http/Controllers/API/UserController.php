@@ -87,14 +87,13 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function getUser($id)
+    public function getDirector($id)
     {
         try {
             return new UserResource(User::findOrFail($id));
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'User not found.'], 404);
         }
-
     }
 
     /**

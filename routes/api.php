@@ -27,11 +27,11 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
         ->get('logout', 'AuthController@logout');
 
-    Route::middleware(['scope:root'])
-        ->post('create-director', 'API\UserController@createDirector');
-    Route::middleware(['scope:root'])
-        ->get('index', 'API\UserController@index');
-    Route::middleware(['scope:root'])->get('get-user/{userId}', 'API\UserController@getUser');
-    Route::middleware(['scope:root'])
-        ->put('update-director/{id}', 'API\UserController@updateDirector');
+    Route::group(['prefix' => 'director', 'middleware' => ['scope:root']], function() {
+        Route::get('/', 'API\UserController@indexDirector');
+        Route::post('create', 'API\UserController@createDirector');
+        Route::get('/{id}', 'API\UserController@getDirector');
+        Route::put('/{id}', 'API\UserController@updateDirector');
+    });
+
 });
