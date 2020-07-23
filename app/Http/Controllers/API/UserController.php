@@ -7,7 +7,8 @@ use App\User;
 use App\Role;
 use App\Info;
 use Illuminate\Http\Request;
-// use App\Http\Requests\UserStore;
+// use App\Http\Requests\StoreDirector;
+use App\Http\Requests\UpdateDirector;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
@@ -21,20 +22,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexDirector()
     {
         return UsersResource::collection(User::all());
     }
+
     /**
      * Create User with role Director
      *
-     * @param UserStore   $request
+     * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
      */
     public function createDirector(Request $request)
     {
-        // $validated = $request->validated();
-
+        // $validated = $request->validated(); // Why it doesn't work. Redirect after fails
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'second_name' => 'required|string|max:255',
@@ -99,11 +100,11 @@ class UserController extends Controller
     /**
      * Update user with role director
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\UpdateDirector $request
      * @param  \App\User  $id
      * @return \Illuminate\Http\Response
      */
-    public function updateDirector(Request $request, $id)
+    public function updateDirector(UpdateDirector $request, $id)
     {
         try {
             $model = User::findOrFail($id);
@@ -111,8 +112,22 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found.'], 403);
         }
 
-        // ! validation
-
+        // !validation
+        $validated = $request->validated();
+        /*
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'second_name' => 'required|string|max:255',
+            'patronymic' => 'required|string|max:255',
+            'birthday' => 'required|date',
+            'sex' => 'required|boolean',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'additional_phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'passport' => 'required|unique:user_info',
+            'inn_code' => 'required|unique:user_info|string|size:10',
+            'image' => 'nullable|mimes:jpeg,bmp,png',
+        ]);
+        */
         $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
 
         $model->info()->update([
