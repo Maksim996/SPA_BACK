@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css" media="screen" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <script src="js/all.js"></script>
+
+        <link rel="stylesheet" href="css/highlight-darcula.css" media="" />
+        <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="" data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+            <img src="images/navbar.png" alt="-image" class=""/>
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="./collection.json">View Postman Collection</a></li>
+                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: July 23 2020</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>Welcome to our API documentation!</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile), and you can switch the programming language of the examples with the tabs in the top right (or from the nav menu at the top left on mobile).</aside><h1>Authenticating requests</h1>
+<p>This API is not authenticated.</p><h1>Authentication</h1>
+<h2>Login user</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"veniam","password":"earum"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "veniam",
+    "password": "earum"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>api/login</code></strong></p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>email</b></code>&nbsp; <small>email</small>     <br></p>
+<p><code><b>password</b></code>&nbsp; <small>string</small>     <br></p>
+<h2>Logout user (Revoke the token)</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/logout" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/logout"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>api/logout</code></strong></p><h1>Endpoints</h1>
+<h2>Authorize a client to access the user&#039;s account.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/oauth/authorize" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/authorize"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>oauth/authorize</code></strong></p>
+<h2>Approve the authorization request.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/oauth/authorize" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/authorize"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>oauth/authorize</code></strong></p>
+<h2>Deny the authorization request.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/oauth/authorize" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/authorize"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>oauth/authorize</code></strong></p>
+<h2>Authorize a client to access the user&#039;s account.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/oauth/token" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/token"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>oauth/token</code></strong></p>
+<h2>Get all of the authorized tokens for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/oauth/tokens" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/tokens"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>oauth/tokens</code></strong></p>
+<h2>Delete the given token.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/oauth/tokens/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/tokens/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>oauth/tokens/{token_id}</code></strong></p>
+<h2>Get a fresh transient token cookie for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/oauth/token/refresh" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/token/refresh"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>oauth/token/refresh</code></strong></p>
+<h2>Get all of the clients for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/oauth/clients" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/clients"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>oauth/clients</code></strong></p>
+<h2>Store a new client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/oauth/clients" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/clients"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>oauth/clients</code></strong></p>
+<h2>Update the given client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://127.0.0.1:8000/oauth/clients/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/clients/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-darkblue">PUT</small>
+<strong><code>oauth/clients/{client_id}</code></strong></p>
+<h2>Delete the given client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/oauth/clients/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/clients/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>oauth/clients/{client_id}</code></strong></p>
+<h2>Get all of the available scopes for the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/oauth/scopes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/scopes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>oauth/scopes</code></strong></p>
+<h2>Get all of the personal access tokens for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/oauth/personal-access-tokens" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/personal-access-tokens"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>oauth/personal-access-tokens</code></strong></p>
+<h2>Create a new personal access token for the user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/oauth/personal-access-tokens" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/personal-access-tokens"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>oauth/personal-access-tokens</code></strong></p>
+<h2>Delete the given token.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://127.0.0.1:8000/oauth/personal-access-tokens/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/oauth/personal-access-tokens/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>oauth/personal-access-tokens/{token_id}</code></strong></p>
+<h2>/</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+        &lt;title&gt;Laravel&lt;/title&gt;
+
+        &lt;!-- Fonts --&gt;
+        &lt;link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"&gt;
+
+        &lt;!-- Styles --&gt;
+        &lt;style&gt;
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links &gt; a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="flex-center position-ref full-height"&gt;
+
+            &lt;div class="content"&gt;
+                &lt;div class="title m-b-md"&gt;
+                    Laravel
+                &lt;/div&gt;
+
+                &lt;div class="links"&gt;
+                    &lt;a href="https://laravel.com/docs"&gt;Docs&lt;/a&gt;
+                    &lt;a href="https://laracasts.com"&gt;Laracasts&lt;/a&gt;
+                    &lt;a href="https://laravel-news.com"&gt;News&lt;/a&gt;
+                    &lt;a href="https://blog.laravel.com"&gt;Blog&lt;/a&gt;
+                    &lt;a href="https://nova.laravel.com"&gt;Nova&lt;/a&gt;
+                    &lt;a href="https://forge.laravel.com"&gt;Forge&lt;/a&gt;
+                    &lt;a href="https://vapor.laravel.com"&gt;Vapor&lt;/a&gt;
+                    &lt;a href="https://github.com/laravel/laravel"&gt;GitHub&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>/</code></strong></p><h1>User management</h1>
+<h2>Display a listing of the resource.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/director" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/director"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>api/director</code></strong></p>
+<h2>Create User with role Director</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://127.0.0.1:8000/api/director/create" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/director/create"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>api/director/create</code></strong></p>
+<h2>Get user data</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/director/eos" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/director/eos"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>api/director/{id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>id</b></code>&nbsp;      <br>
+The ID of the user.</p>
+<h2>Update user with role director</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://127.0.0.1:8000/api/director/nihil" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"first_name":"est","second_name":"accusantium","patronymic":"quod","birthday":"2020-07-23T21:12:51+0300","sex":false,"phone":"provident","additional_phone":{},"passport":"odio","inn_code":"omnis","image":{}}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/director/nihil"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "est",
+    "second_name": "accusantium",
+    "patronymic": "quod",
+    "birthday": "2020-07-23T21:12:51+0300",
+    "sex": false,
+    "phone": "provident",
+    "additional_phone": {},
+    "passport": "odio",
+    "inn_code": "omnis",
+    "image": {}
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-darkblue">PUT</small>
+<strong><code>api/director/{id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>id</b></code>&nbsp;      <br>
+The ID of the User</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>first_name</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>second_name</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>patronymic</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>birthday</b></code>&nbsp; <small>string</small>     <br>
+The value must be a valid date.</p>
+<p><code><b>sex</b></code>&nbsp; <small>boolean</small>     <br></p>
+<p><code><b>phone</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>additional_phone</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br></p>
+<p><code><b>passport</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>inn_code</b></code>&nbsp; <small>string</small>     <br></p>
+<p><code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br></p>
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var languages = ["bash","javascript"];
+        setupLanguages(languages);
+    });
+</script>
+</body>
+</html>

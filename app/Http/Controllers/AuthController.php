@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
-
+/**
+ * @group Authentication
+ *
+ * APIs for authenticate users
+ */
 class AuthController extends Controller
 {
     /**
      * Login user
+     * @group Authentication
+     *
+     * @bodyParam email email required
+     * @bodyParam password string required
      *
      * @param Request $request
      * @return [string] token
@@ -44,6 +52,7 @@ class AuthController extends Controller
 
     /**
      * Logout user (Revoke the token)
+     * @group Authentication
      *
      * @return [string] message
      */

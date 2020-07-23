@@ -15,11 +15,17 @@ use Carbon\Carbon;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UsersResource;
 
+/**
+ * @group User management
+ *
+ * APIs for managing users
+ */
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @group User management
      * @return \Illuminate\Http\Response
      */
     public function indexDirector()
@@ -29,6 +35,7 @@ class UserController extends Controller
 
     /**
      * Create User with role Director
+     * @group User management
      *
      * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
@@ -83,7 +90,9 @@ class UserController extends Controller
     }
 
     /**
-     * get user data
+     * Get user data
+     * @group User management
+     * @urlParam id required The ID of the user.
      *
      * @param int $id
      * @return \Illuminate\Http\Response
@@ -99,8 +108,10 @@ class UserController extends Controller
 
     /**
      * Update user with role director
+     * @group User management
+     * @urlParam id required The ID of the User
      *
-     * @param \App\Http\Requests\UpdateDirector $request
+     * @param App\Http\Requests\UpdateDirector $request
      * @param  \App\User  $id
      * @return \Illuminate\Http\Response
      */
