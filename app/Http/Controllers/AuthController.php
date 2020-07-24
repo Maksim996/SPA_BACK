@@ -17,7 +17,9 @@ class AuthController extends Controller
      *
      * @bodyParam email email required
      * @bodyParam password string required
-     *
+     * @response {
+     *   "token": "token"
+     * }
      * @param Request $request
      * @return [string] token
      */
@@ -53,7 +55,9 @@ class AuthController extends Controller
     /**
      * Logout user (Revoke the token)
      * @group Authentication
-     *
+     * @response {
+     * "message": "Successfully logged out"
+     * }
      * @return [string] message
      */
     public function logout(Request $request)

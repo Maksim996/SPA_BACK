@@ -13,7 +13,7 @@ curl -X POST \
     "http://127.0.0.1:8000/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"veniam","password":"earum"}'
+    -d '{"email":"rem","password":"sit"}'
 
 ```
 
@@ -28,8 +28,8 @@ let headers = {
 };
 
 let body = {
-    "email": "veniam",
-    "password": "earum"
+    "email": "rem",
+    "password": "sit"
 }
 
 fetch(url, {
@@ -42,6 +42,13 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "token": "token"
+}
+```
 
 ### Request
 <small class="badge badge-black">POST</small>
@@ -90,11 +97,11 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
 {
-    "message": "Unauthenticated."
+    "message": "Successfully logged out"
 }
 ```
 

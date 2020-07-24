@@ -17,7 +17,7 @@ use App\Http\Resources\UsersResource;
 
 /**
  * @group User management
- *
+ * @authenticated
  * APIs for managing users
  */
 class UserController extends Controller
@@ -36,6 +36,18 @@ class UserController extends Controller
     /**
      * Create User with role Director
      * @group User management
+     * @bodyParam first_name string required
+     * @bodyParam second_name string required
+     * @bodyParam patronymic string required
+     * @bodyParam email email required email@email.com
+     * @bodyParam birthday date_format:d.m.Y required
+     * @bodyParam sex boolean required Example 1 or 0
+     * @bodyParam phone string required Length 10 chars
+     * @bodyParam additional_phone string Length 10 chars
+     * @bodyParam passport string required Length 9 chars
+     * @bodyParam inn_code sting required Length 10 chars !int
+     * @bodyParam image string
+     * @bodyParam description string
      *
      * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
@@ -50,9 +62,9 @@ class UserController extends Controller
             'email' => 'required|unique:users|email|max:255',
             'birthday' => 'required|date',
             'sex' => 'required|boolean',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10', // todo
-            'additional_phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10', // tODO +380 need todo
-            'passport' => 'required|unique:user_info',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10', // todo
+            'additional_phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:10', // tODO +380 need todo
+            'passport' => 'required|unique:user_info|string|size:9', //
             'inn_code' => 'required|unique:user_info|string|size:10',
             'image' => 'nullable|mimes:jpeg,bmp,png',
             'description' => 'nullable|string',
@@ -110,6 +122,7 @@ class UserController extends Controller
      * Update user with role director
      * @group User management
      * @urlParam id required The ID of the User
+     * @response { "message": "User updated successfully" }
      *
      * @param App\Http\Requests\UpdateDirector $request
      * @param  \App\User  $id

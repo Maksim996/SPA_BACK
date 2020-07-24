@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "MS API",
-        "_postman_id": "9475372d-eb2a-496c-bb47-c11cffeecb4a",
+        "_postman_id": "585258a9-25c8-49cc-b6b7-2009e816e7e8",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -34,7 +34,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"veniam\",\n    \"password\": \"earum\"\n}",
+                            "raw": "{\n    \"email\": \"rem\",\n    \"password\": \"sit\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -648,6 +648,10 @@
                         "method": "GET",
                         "header": [
                             {
+                                "key": "Authorization",
+                                "value": "Bearer 8h36VkebPgd5cZE4D6av1fa"
+                            },
+                            {
                                 "key": "Content-Type",
                                 "value": "application\/json"
                             },
@@ -682,6 +686,10 @@
                         "method": "POST",
                         "header": [
                             {
+                                "key": "Authorization",
+                                "value": "Bearer aefP4vd3Za5g6VkD6c1Ebh8"
+                            },
+                            {
                                 "key": "Content-Type",
                                 "value": "application\/json"
                             },
@@ -692,7 +700,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "[]",
+                            "raw": "{\n    \"first_name\": \"voluptatem\",\n    \"second_name\": \"debitis\",\n    \"patronymic\": \"similique\",\n    \"email\": \"optio\",\n    \"birthday\": \"qui\",\n    \"sex\": true,\n    \"phone\": \"cumque\",\n    \"additional_phone\": \"qui\",\n    \"passport\": \"optio\",\n    \"inn_code\": \"asperiores\",\n    \"image\": \"et\",\n    \"description\": \"alias\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -716,13 +724,17 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eos",
+                                    "value": "eligendi",
                                     "description": "The ID of the user."
                                 }
                             ]
                         },
                         "method": "GET",
                         "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer 46gv3f8bDPdZa56ae1kcVEh"
+                            },
                             {
                                 "key": "Content-Type",
                                 "value": "application\/json"
@@ -758,13 +770,17 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nihil",
+                                    "value": "omnis",
                                     "description": "The ID of the User"
                                 }
                             ]
                         },
                         "method": "PUT",
                         "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer baZ84VcPehEg6kfDd153av6"
+                            },
                             {
                                 "key": "Content-Type",
                                 "value": "application\/json"
@@ -776,7 +792,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"est\",\n    \"second_name\": \"accusantium\",\n    \"patronymic\": \"quod\",\n    \"birthday\": \"2020-07-23T21:12:51+0300\",\n    \"sex\": false,\n    \"phone\": \"provident\",\n    \"additional_phone\": {},\n    \"passport\": \"odio\",\n    \"inn_code\": \"omnis\",\n    \"image\": {}\n}",
+                            "raw": "{\n    \"first_name\": \"quasi\",\n    \"second_name\": \"assumenda\",\n    \"patronymic\": \"rerum\",\n    \"birthday\": \"2020-07-24T14:21:42+0300\",\n    \"sex\": false,\n    \"phone\": \"minus\",\n    \"additional_phone\": {},\n    \"passport\": \"occaecati\",\n    \"inn_code\": \"quo\",\n    \"image\": {}\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
