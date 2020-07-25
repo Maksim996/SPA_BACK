@@ -9,7 +9,7 @@ use App\Info;
 use Illuminate\Http\Request;
 // use App\Http\Requests\StoreDirector;
 use App\Http\Requests\UpdateDirector;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Validator, Auth};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 use App\Http\Resources\UserResource;
@@ -189,14 +189,14 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display profile the authenticated user.
+     * @group User management
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show()
     {
-        //
+        return new UserResource(Auth::user());
     }
 
     /**

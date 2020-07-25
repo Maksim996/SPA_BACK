@@ -24,8 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', 'AuthController@login');
 
 Route::middleware(['auth:api', 'role'])->group(function() {
-    Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
-        ->get('logout', 'AuthController@logout');
+    // Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
+    //     ->get('logout', 'AuthController@logout');
+    Route::get('show', 'API\UserController@show'); // !scope
+    Route::get('logout', 'AuthController@logout'); // !scope
+    Route::group(['middleware' => ['scope:root, director, supervisor, administrator, doctor, medical_representative']], function() {
+
+
+    });
 
     Route::group(['prefix' => 'director', 'middleware' => ['scope:root']], function() {
         Route::get('/', 'API\UserController@indexDirector');
