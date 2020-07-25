@@ -23,6 +23,13 @@
 
 Url to documentation `/docs`
 
+## Start Project
+1. command `composer install`
+2. create a database and specify settings for `.env`
+3. `php artisan migrate`
+4. `php artisan db:seed`
+5. `php artisan passport:install`
+
 ## Errors
 
 Personal access client not found. Please create one. - php artisan passport:client --personal

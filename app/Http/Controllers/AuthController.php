@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginPersonnelRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
 /**
@@ -23,12 +24,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return [string] token
      */
-    public function login(Request $request) {
-
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required'
-        ]);
+    public function login(LoginPersonnelRequest $request) {
 
         $credentials = $request->only('email', 'password');
 
@@ -48,6 +44,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'token' => $token->accessToken,
+                'role' => $userRole['role']
             ]);
         }
     }
