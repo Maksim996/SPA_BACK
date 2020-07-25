@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: July 24 2020</li>
+            <li>Last updated: July 25 2020</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -52,7 +52,7 @@
         <h1>Introduction</h1>
 <p>Welcome to our API documentation!</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile), and you can switch the programming language of the examples with the tabs in the top right (or from the nav menu at the top left on mobile).</aside><h1>Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {your-token}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {your-token}"</code></strong>.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Authentication</h1>
 <h2>Login user</h2>
 <blockquote>
@@ -62,7 +62,7 @@
     "http://127.0.0.1:8000/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"rem","password":"sit"}'
+    -d '{"email":"aspernatur","password":"voluptatem"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/login"
@@ -74,8 +74,8 @@ let headers = {
 };
 
 let body = {
-    "email": "rem",
-    "password": "sit"
+    "email": "aspernatur",
+    "password": "voluptatem"
 }
 
 fetch(url, {
@@ -667,6 +667,41 @@ fetch(url, {
 <h3>Request</h3>
 <p><small class="badge badge-green">GET</small>
 <strong><code>/</code></strong></p><h1>User management</h1>
+<h2>Display profile the authenticated user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/show" \
+    -H "Authorization: Bearer Vedg134PEcha8Df6vaZk56b" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/show"
+);
+
+let headers = {
+    "Authorization": "Bearer Vedg134PEcha8Df6vaZk56b",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>api/show</code></strong></p>
 <h2>Display a listing of the resource.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
@@ -674,7 +709,7 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
     -G "http://127.0.0.1:8000/api/director" \
-    -H "Authorization: Bearer 8h36VkebPgd5cZE4D6av1fa" \
+    -H "Authorization: Bearer kD3h4abfP6vcd1g68ZEaeV5" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
@@ -682,7 +717,7 @@ fetch(url, {
 );
 
 let headers = {
-    "Authorization": "Bearer 8h36VkebPgd5cZE4D6av1fa",
+    "Authorization": "Bearer kD3h4abfP6vcd1g68ZEaeV5",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -709,34 +744,34 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://127.0.0.1:8000/api/director/create" \
-    -H "Authorization: Bearer aefP4vd3Za5g6VkD6c1Ebh8" \
+    -H "Authorization: Bearer hfv3eD6agEbkZ45aVc6P81d" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"voluptatem","second_name":"debitis","patronymic":"similique","email":"optio","birthday":"qui","sex":true,"phone":"cumque","additional_phone":"qui","passport":"optio","inn_code":"asperiores","image":"et","description":"alias"}'
+    -d '{"first_name":"minus","second_name":"ut","patronymic":"aut","email":"ratione","birthday":"fugiat","sex":true,"phone":"ab","additional_phone":"officia","passport":"qui","inn_code":"est","image":"voluptatem","description":"aut"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/director/create"
 );
 
 let headers = {
-    "Authorization": "Bearer aefP4vd3Za5g6VkD6c1Ebh8",
+    "Authorization": "Bearer hfv3eD6agEbkZ45aVc6P81d",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "voluptatem",
-    "second_name": "debitis",
-    "patronymic": "similique",
-    "email": "optio",
-    "birthday": "qui",
+    "first_name": "minus",
+    "second_name": "ut",
+    "patronymic": "aut",
+    "email": "ratione",
+    "birthday": "fugiat",
     "sex": true,
-    "phone": "cumque",
-    "additional_phone": "qui",
-    "passport": "optio",
-    "inn_code": "asperiores",
-    "image": "et",
-    "description": "alias"
+    "phone": "ab",
+    "additional_phone": "officia",
+    "passport": "qui",
+    "inn_code": "est",
+    "image": "voluptatem",
+    "description": "aut"
 }
 
 fetch(url, {
@@ -774,16 +809,16 @@ Length 10 chars !int</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/director/eligendi" \
-    -H "Authorization: Bearer 46gv3f8bDPdZa56ae1kcVEh" \
+    -G "http://127.0.0.1:8000/api/director/nisi" \
+    -H "Authorization: Bearer v6bfgcPaeaZ1k86h5d4VE3D" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/director/eligendi"
+    "http://127.0.0.1:8000/api/director/nisi"
 );
 
 let headers = {
-    "Authorization": "Bearer 46gv3f8bDPdZa56ae1kcVEh",
+    "Authorization": "Bearer v6bfgcPaeaZ1k86h5d4VE3D",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -812,32 +847,32 @@ The ID of the user.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://127.0.0.1:8000/api/director/omnis" \
-    -H "Authorization: Bearer baZ84VcPehEg6kfDd153av6" \
+    "http://127.0.0.1:8000/api/director/assumenda" \
+    -H "Authorization: Bearer P3c6ghdb4VaD5Zev1E8fk6a" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"quasi","second_name":"assumenda","patronymic":"rerum","birthday":"2020-07-24T14:21:42+0300","sex":false,"phone":"minus","additional_phone":{},"passport":"occaecati","inn_code":"quo","image":{}}'
+    -d '{"first_name":"excepturi","second_name":"et","patronymic":"libero","birthday":"2020-07-25T17:54:45+0300","sex":false,"phone":"fuga","additional_phone":{},"passport":"velit","inn_code":"labore","image":{}}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/director/omnis"
+    "http://127.0.0.1:8000/api/director/assumenda"
 );
 
 let headers = {
-    "Authorization": "Bearer baZ84VcPehEg6kfDd153av6",
+    "Authorization": "Bearer P3c6ghdb4VaD5Zev1E8fk6a",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "quasi",
-    "second_name": "assumenda",
-    "patronymic": "rerum",
-    "birthday": "2020-07-24T14:21:42+0300",
+    "first_name": "excepturi",
+    "second_name": "et",
+    "patronymic": "libero",
+    "birthday": "2020-07-25T17:54:45+0300",
     "sex": false,
-    "phone": "minus",
+    "phone": "fuga",
     "additional_phone": {},
-    "passport": "occaecati",
-    "inn_code": "quo",
+    "passport": "velit",
+    "inn_code": "labore",
     "image": {}
 }
 

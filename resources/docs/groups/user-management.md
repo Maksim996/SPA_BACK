@@ -1,6 +1,57 @@
 # User management
 
 
+## Display profile the authenticated user.
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://127.0.0.1:8000/api/show" \
+    -H "Authorization: Bearer Vedg134PEcha8Df6vaZk56b" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://127.0.0.1:8000/api/show"
+);
+
+let headers = {
+    "Authorization": "Bearer Vedg134PEcha8Df6vaZk56b",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (401):
+
+```json
+{
+    "message": "Unauthenticated."
+}
+```
+
+### Request
+<small class="badge badge-green">GET</small>
+ **`api/show`**
+
+
+
 ## Display a listing of the resource.
 
 <small class="badge badge-darkred">requires authentication</small>
@@ -12,7 +63,7 @@
 ```bash
 curl -X GET \
     -G "http://127.0.0.1:8000/api/director" \
-    -H "Authorization: Bearer 8h36VkebPgd5cZE4D6av1fa" \
+    -H "Authorization: Bearer kD3h4abfP6vcd1g68ZEaeV5" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -23,7 +74,7 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer 8h36VkebPgd5cZE4D6av1fa",
+    "Authorization": "Bearer kD3h4abfP6vcd1g68ZEaeV5",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -63,10 +114,10 @@ fetch(url, {
 ```bash
 curl -X POST \
     "http://127.0.0.1:8000/api/director/create" \
-    -H "Authorization: Bearer aefP4vd3Za5g6VkD6c1Ebh8" \
+    -H "Authorization: Bearer hfv3eD6agEbkZ45aVc6P81d" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"voluptatem","second_name":"debitis","patronymic":"similique","email":"optio","birthday":"qui","sex":true,"phone":"cumque","additional_phone":"qui","passport":"optio","inn_code":"asperiores","image":"et","description":"alias"}'
+    -d '{"first_name":"minus","second_name":"ut","patronymic":"aut","email":"ratione","birthday":"fugiat","sex":true,"phone":"ab","additional_phone":"officia","passport":"qui","inn_code":"est","image":"voluptatem","description":"aut"}'
 
 ```
 
@@ -76,24 +127,24 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer aefP4vd3Za5g6VkD6c1Ebh8",
+    "Authorization": "Bearer hfv3eD6agEbkZ45aVc6P81d",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "voluptatem",
-    "second_name": "debitis",
-    "patronymic": "similique",
-    "email": "optio",
-    "birthday": "qui",
+    "first_name": "minus",
+    "second_name": "ut",
+    "patronymic": "aut",
+    "email": "ratione",
+    "birthday": "fugiat",
     "sex": true,
-    "phone": "cumque",
-    "additional_phone": "qui",
-    "passport": "optio",
-    "inn_code": "asperiores",
-    "image": "et",
-    "description": "alias"
+    "phone": "ab",
+    "additional_phone": "officia",
+    "passport": "qui",
+    "inn_code": "est",
+    "image": "voluptatem",
+    "description": "aut"
 }
 
 fetch(url, {
@@ -160,19 +211,19 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://127.0.0.1:8000/api/director/eligendi" \
-    -H "Authorization: Bearer 46gv3f8bDPdZa56ae1kcVEh" \
+    -G "http://127.0.0.1:8000/api/director/nisi" \
+    -H "Authorization: Bearer v6bfgcPaeaZ1k86h5d4VE3D" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/eligendi"
+    "http://127.0.0.1:8000/api/director/nisi"
 );
 
 let headers = {
-    "Authorization": "Bearer 46gv3f8bDPdZa56ae1kcVEh",
+    "Authorization": "Bearer v6bfgcPaeaZ1k86h5d4VE3D",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -215,35 +266,35 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://127.0.0.1:8000/api/director/omnis" \
-    -H "Authorization: Bearer baZ84VcPehEg6kfDd153av6" \
+    "http://127.0.0.1:8000/api/director/assumenda" \
+    -H "Authorization: Bearer P3c6ghdb4VaD5Zev1E8fk6a" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"quasi","second_name":"assumenda","patronymic":"rerum","birthday":"2020-07-24T14:21:42+0300","sex":false,"phone":"minus","additional_phone":{},"passport":"occaecati","inn_code":"quo","image":{}}'
+    -d '{"first_name":"excepturi","second_name":"et","patronymic":"libero","birthday":"2020-07-25T17:54:45+0300","sex":false,"phone":"fuga","additional_phone":{},"passport":"velit","inn_code":"labore","image":{}}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/omnis"
+    "http://127.0.0.1:8000/api/director/assumenda"
 );
 
 let headers = {
-    "Authorization": "Bearer baZ84VcPehEg6kfDd153av6",
+    "Authorization": "Bearer P3c6ghdb4VaD5Zev1E8fk6a",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "quasi",
-    "second_name": "assumenda",
-    "patronymic": "rerum",
-    "birthday": "2020-07-24T14:21:42+0300",
+    "first_name": "excepturi",
+    "second_name": "et",
+    "patronymic": "libero",
+    "birthday": "2020-07-25T17:54:45+0300",
     "sex": false,
-    "phone": "minus",
+    "phone": "fuga",
     "additional_phone": {},
-    "passport": "occaecati",
-    "inn_code": "quo",
+    "passport": "velit",
+    "inn_code": "labore",
     "image": {}
 }
 

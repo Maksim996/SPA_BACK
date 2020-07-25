@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "MS API",
-        "_postman_id": "585258a9-25c8-49cc-b6b7-2009e816e7e8",
+        "_postman_id": "0da8e45d-f9b4-46b8-a4bb-5f1fea644e45",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -34,7 +34,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"rem\",\n    \"password\": \"sit\"\n}",
+                            "raw": "{\n    \"email\": \"aspernatur\",\n    \"password\": \"voluptatem\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -636,6 +636,44 @@
             "description": "",
             "item": [
                 {
+                    "name": "Display profile the authenticated user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "api\/show",
+                            "query": [],
+                            "raw": "http:\/\/127.0.0.1:8000\/api\/show"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer Vedg134PEcha8Df6vaZk56b"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
                     "name": "Display a listing of the resource.",
                     "request": {
                         "url": {
@@ -649,7 +687,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer 8h36VkebPgd5cZE4D6av1fa"
+                                "value": "Bearer kD3h4abfP6vcd1g68ZEaeV5"
                             },
                             {
                                 "key": "Content-Type",
@@ -687,7 +725,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer aefP4vd3Za5g6VkD6c1Ebh8"
+                                "value": "Bearer hfv3eD6agEbkZ45aVc6P81d"
                             },
                             {
                                 "key": "Content-Type",
@@ -700,7 +738,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"voluptatem\",\n    \"second_name\": \"debitis\",\n    \"patronymic\": \"similique\",\n    \"email\": \"optio\",\n    \"birthday\": \"qui\",\n    \"sex\": true,\n    \"phone\": \"cumque\",\n    \"additional_phone\": \"qui\",\n    \"passport\": \"optio\",\n    \"inn_code\": \"asperiores\",\n    \"image\": \"et\",\n    \"description\": \"alias\"\n}",
+                            "raw": "{\n    \"first_name\": \"minus\",\n    \"second_name\": \"ut\",\n    \"patronymic\": \"aut\",\n    \"email\": \"ratione\",\n    \"birthday\": \"fugiat\",\n    \"sex\": true,\n    \"phone\": \"ab\",\n    \"additional_phone\": \"officia\",\n    \"passport\": \"qui\",\n    \"inn_code\": \"est\",\n    \"image\": \"voluptatem\",\n    \"description\": \"aut\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -724,7 +762,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eligendi",
+                                    "value": "nisi",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -733,7 +771,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer 46gv3f8bDPdZa56ae1kcVEh"
+                                "value": "Bearer v6bfgcPaeaZ1k86h5d4VE3D"
                             },
                             {
                                 "key": "Content-Type",
@@ -770,7 +808,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "omnis",
+                                    "value": "assumenda",
                                     "description": "The ID of the User"
                                 }
                             ]
@@ -779,7 +817,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer baZ84VcPehEg6kfDd153av6"
+                                "value": "Bearer P3c6ghdb4VaD5Zev1E8fk6a"
                             },
                             {
                                 "key": "Content-Type",
@@ -792,7 +830,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"quasi\",\n    \"second_name\": \"assumenda\",\n    \"patronymic\": \"rerum\",\n    \"birthday\": \"2020-07-24T14:21:42+0300\",\n    \"sex\": false,\n    \"phone\": \"minus\",\n    \"additional_phone\": {},\n    \"passport\": \"occaecati\",\n    \"inn_code\": \"quo\",\n    \"image\": {}\n}",
+                            "raw": "{\n    \"first_name\": \"excepturi\",\n    \"second_name\": \"et\",\n    \"patronymic\": \"libero\",\n    \"birthday\": \"2020-07-25T17:54:45+0300\",\n    \"sex\": false,\n    \"phone\": \"fuga\",\n    \"additional_phone\": {},\n    \"passport\": \"velit\",\n    \"inn_code\": \"labore\",\n    \"image\": {}\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
