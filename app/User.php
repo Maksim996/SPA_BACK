@@ -55,4 +55,15 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Info');
     }
+
+    /**
+     * Scope a query to only include users with role Director.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIsDirector($query)
+    {
+        return $query->where('role_id', 2);
+    }
 }

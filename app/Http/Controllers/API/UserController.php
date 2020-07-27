@@ -23,14 +23,14 @@ use App\Http\Resources\UsersResource;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the user with role Director.
      *
      * @group User management
      * @return \Illuminate\Http\Response
      */
     public function indexDirector()
     {
-        return UsersResource::collection(User::all());
+        return UsersResource::collection(User::isDirector()->get());
     }
 
     /**
