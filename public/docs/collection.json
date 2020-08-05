@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "MS API",
-        "_postman_id": "0da8e45d-f9b4-46b8-a4bb-5f1fea644e45",
+        "_postman_id": "82a2e17e-44b2-41c2-8eab-8762396fb73a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -34,7 +34,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"aspernatur\",\n    \"password\": \"voluptatem\"\n}",
+                            "raw": "{\n    \"email\": \"ipsum\",\n    \"password\": \"id\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -596,6 +596,40 @@
                     }
                 },
                 {
+                    "name": "api\/{fallbackPlaceholder}",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "api\/:fallbackPlaceholder",
+                            "query": [],
+                            "raw": "http:\/\/127.0.0.1:8000\/api\/:fallbackPlaceholder"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
                     "name": "\/",
                     "request": {
                         "url": {
@@ -641,15 +675,15 @@
                         "url": {
                             "protocol": "http",
                             "host": "127.0.0.1:8000",
-                            "path": "api\/show",
+                            "path": "api\/user",
                             "query": [],
-                            "raw": "http:\/\/127.0.0.1:8000\/api\/show"
+                            "raw": "http:\/\/127.0.0.1:8000\/api\/user"
                         },
                         "method": "GET",
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer Vedg134PEcha8Df6vaZk56b"
+                                "value": "Bearer EbPZahfkVg68v34ace1d5D6"
                             },
                             {
                                 "key": "Content-Type",
@@ -674,7 +708,7 @@
                     }
                 },
                 {
-                    "name": "Display a listing of the resource.",
+                    "name": "Display a listing of the user with role Director.",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -687,7 +721,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer kD3h4abfP6vcd1g68ZEaeV5"
+                                "value": "Bearer 4Zfec1PE8avghb665DdVk3a"
                             },
                             {
                                 "key": "Content-Type",
@@ -725,7 +759,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer hfv3eD6agEbkZ45aVc6P81d"
+                                "value": "Bearer dPDb6k1ZEfeh4gav653aVc8"
                             },
                             {
                                 "key": "Content-Type",
@@ -738,7 +772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"minus\",\n    \"second_name\": \"ut\",\n    \"patronymic\": \"aut\",\n    \"email\": \"ratione\",\n    \"birthday\": \"fugiat\",\n    \"sex\": true,\n    \"phone\": \"ab\",\n    \"additional_phone\": \"officia\",\n    \"passport\": \"qui\",\n    \"inn_code\": \"est\",\n    \"image\": \"voluptatem\",\n    \"description\": \"aut\"\n}",
+                            "raw": "{\n    \"first_name\": \"quaerat\",\n    \"second_name\": \"aut\",\n    \"patronymic\": \"aut\",\n    \"email\": \"numquam\",\n    \"birthday\": \"et\",\n    \"sex\": true,\n    \"phone\": \"aut\",\n    \"additional_phone\": \"sit\",\n    \"passport\": \"tempore\",\n    \"inn_code\": \"est\",\n    \"image\": \"ut\",\n    \"description\": \"magnam\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -762,7 +796,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nisi",
+                                    "value": "quos",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -771,7 +805,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer v6bfgcPaeaZ1k86h5d4VE3D"
+                                "value": "Bearer hPc5vdg18E63beZa64kfVaD"
                             },
                             {
                                 "key": "Content-Type",
@@ -808,7 +842,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "assumenda",
+                                    "value": "consectetur",
                                     "description": "The ID of the User"
                                 }
                             ]
@@ -817,7 +851,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer P3c6ghdb4VaD5Zev1E8fk6a"
+                                "value": "Bearer DdVP156Eaachgbek6Zvf834"
                             },
                             {
                                 "key": "Content-Type",
@@ -830,7 +864,53 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"excepturi\",\n    \"second_name\": \"et\",\n    \"patronymic\": \"libero\",\n    \"birthday\": \"2020-07-25T17:54:45+0300\",\n    \"sex\": false,\n    \"phone\": \"fuga\",\n    \"additional_phone\": {},\n    \"passport\": \"velit\",\n    \"inn_code\": \"labore\",\n    \"image\": {}\n}",
+                            "raw": "{\n    \"first_name\": \"quas\",\n    \"second_name\": \"reiciendis\",\n    \"patronymic\": \"commodi\",\n    \"birthday\": \"2020-08-05T15:53:51+0300\",\n    \"sex\": false,\n    \"phone\": \"reiciendis\",\n    \"additional_phone\": {},\n    \"passport\": \"consequatur\",\n    \"inn_code\": \"animi\",\n    \"image\": {}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Update status user active isn`t active",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "api\/director\/active\/:id",
+                            "query": [],
+                            "raw": "http:\/\/127.0.0.1:8000\/api\/director\/active\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "nobis",
+                                    "description": "The ID of the User"
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer EbPc35g68vhVfad1Z4kDe6a"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]",
                             "options": {
                                 "raw": {
                                     "language": "json"

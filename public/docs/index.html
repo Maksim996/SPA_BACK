@@ -43,7 +43,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: July 25 2020</li>
+            <li>Last updated: August 5 2020</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -52,7 +52,7 @@
         <h1>Introduction</h1>
 <p>Welcome to our API documentation!</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile), and you can switch the programming language of the examples with the tabs in the top right (or from the nav menu at the top left on mobile).</aside><h1>Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {your-token}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {your-token}"</code></strong>.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Authentication</h1>
 <h2>Login user</h2>
 <blockquote>
@@ -62,7 +62,7 @@
     "http://127.0.0.1:8000/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"aspernatur","password":"voluptatem"}'
+    -d '{"email":"ipsum","password":"id"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/login"
@@ -74,8 +74,8 @@ let headers = {
 };
 
 let body = {
-    "email": "aspernatur",
-    "password": "voluptatem"
+    "email": "ipsum",
+    "password": "id"
 }
 
 fetch(url, {
@@ -549,6 +549,38 @@ fetch(url, {
 <h3>Request</h3>
 <p><small class="badge badge-red">DELETE</small>
 <strong><code>oauth/personal-access-tokens/{token_id}</code></strong></p>
+<h2>api/{fallbackPlaceholder}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://127.0.0.1:8000/api/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Resource not found."
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>api/{fallbackPlaceholder}</code></strong></p>
 <h2>/</h2>
 <blockquote>
 <p>Example request:</p>
@@ -673,16 +705,16 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/show" \
-    -H "Authorization: Bearer Vedg134PEcha8Df6vaZk56b" \
+    -G "http://127.0.0.1:8000/api/user" \
+    -H "Authorization: Bearer EbPZahfkVg68v34ace1d5D6" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/show"
+    "http://127.0.0.1:8000/api/user"
 );
 
 let headers = {
-    "Authorization": "Bearer Vedg134PEcha8Df6vaZk56b",
+    "Authorization": "Bearer EbPZahfkVg68v34ace1d5D6",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -701,15 +733,15 @@ fetch(url, {
 }</code></pre>
 <h3>Request</h3>
 <p><small class="badge badge-green">GET</small>
-<strong><code>api/show</code></strong></p>
-<h2>Display a listing of the resource.</h2>
+<strong><code>api/user</code></strong></p>
+<h2>Display a listing of the user with role Director.</h2>
 <p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
     -G "http://127.0.0.1:8000/api/director" \
-    -H "Authorization: Bearer kD3h4abfP6vcd1g68ZEaeV5" \
+    -H "Authorization: Bearer 4Zfec1PE8avghb665DdVk3a" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
@@ -717,7 +749,7 @@ fetch(url, {
 );
 
 let headers = {
-    "Authorization": "Bearer kD3h4abfP6vcd1g68ZEaeV5",
+    "Authorization": "Bearer 4Zfec1PE8avghb665DdVk3a",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -744,34 +776,34 @@ fetch(url, {
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://127.0.0.1:8000/api/director/create" \
-    -H "Authorization: Bearer hfv3eD6agEbkZ45aVc6P81d" \
+    -H "Authorization: Bearer dPDb6k1ZEfeh4gav653aVc8" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"minus","second_name":"ut","patronymic":"aut","email":"ratione","birthday":"fugiat","sex":true,"phone":"ab","additional_phone":"officia","passport":"qui","inn_code":"est","image":"voluptatem","description":"aut"}'
+    -d '{"first_name":"quaerat","second_name":"aut","patronymic":"aut","email":"numquam","birthday":"et","sex":true,"phone":"aut","additional_phone":"sit","passport":"tempore","inn_code":"est","image":"ut","description":"magnam"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/director/create"
 );
 
 let headers = {
-    "Authorization": "Bearer hfv3eD6agEbkZ45aVc6P81d",
+    "Authorization": "Bearer dPDb6k1ZEfeh4gav653aVc8",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "minus",
-    "second_name": "ut",
+    "first_name": "quaerat",
+    "second_name": "aut",
     "patronymic": "aut",
-    "email": "ratione",
-    "birthday": "fugiat",
+    "email": "numquam",
+    "birthday": "et",
     "sex": true,
-    "phone": "ab",
-    "additional_phone": "officia",
-    "passport": "qui",
+    "phone": "aut",
+    "additional_phone": "sit",
+    "passport": "tempore",
     "inn_code": "est",
-    "image": "voluptatem",
-    "description": "aut"
+    "image": "ut",
+    "description": "magnam"
 }
 
 fetch(url, {
@@ -809,16 +841,16 @@ Length 10 chars !int</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/director/nisi" \
-    -H "Authorization: Bearer v6bfgcPaeaZ1k86h5d4VE3D" \
+    -G "http://127.0.0.1:8000/api/director/quos" \
+    -H "Authorization: Bearer hPc5vdg18E63beZa64kfVaD" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/director/nisi"
+    "http://127.0.0.1:8000/api/director/quos"
 );
 
 let headers = {
-    "Authorization": "Bearer v6bfgcPaeaZ1k86h5d4VE3D",
+    "Authorization": "Bearer hPc5vdg18E63beZa64kfVaD",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -847,32 +879,32 @@ The ID of the user.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://127.0.0.1:8000/api/director/assumenda" \
-    -H "Authorization: Bearer P3c6ghdb4VaD5Zev1E8fk6a" \
+    "http://127.0.0.1:8000/api/director/consectetur" \
+    -H "Authorization: Bearer DdVP156Eaachgbek6Zvf834" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"excepturi","second_name":"et","patronymic":"libero","birthday":"2020-07-25T17:54:45+0300","sex":false,"phone":"fuga","additional_phone":{},"passport":"velit","inn_code":"labore","image":{}}'
+    -d '{"first_name":"quas","second_name":"reiciendis","patronymic":"commodi","birthday":"2020-08-05T15:53:51+0300","sex":false,"phone":"reiciendis","additional_phone":{},"passport":"consequatur","inn_code":"animi","image":{}}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/director/assumenda"
+    "http://127.0.0.1:8000/api/director/consectetur"
 );
 
 let headers = {
-    "Authorization": "Bearer P3c6ghdb4VaD5Zev1E8fk6a",
+    "Authorization": "Bearer DdVP156Eaachgbek6Zvf834",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "excepturi",
-    "second_name": "et",
-    "patronymic": "libero",
-    "birthday": "2020-07-25T17:54:45+0300",
+    "first_name": "quas",
+    "second_name": "reiciendis",
+    "patronymic": "commodi",
+    "birthday": "2020-08-05T15:53:51+0300",
     "sex": false,
-    "phone": "fuga",
+    "phone": "reiciendis",
     "additional_phone": {},
-    "passport": "velit",
-    "inn_code": "labore",
+    "passport": "consequatur",
+    "inn_code": "animi",
     "image": {}
 }
 
@@ -907,6 +939,38 @@ The value must be a valid date.</p>
 <p><code><b>passport</b></code>&nbsp; <small>string</small>     <br></p>
 <p><code><b>inn_code</b></code>&nbsp; <small>string</small>     <br></p>
 <p><code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br></p>
+<h2>Update status user active isn`t active</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PATCH \
+    "http://127.0.0.1:8000/api/director/active/nobis" \
+    -H "Authorization: Bearer EbPc35g68vhVfad1Z4kDe6a" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/director/active/nobis"
+);
+
+let headers = {
+    "Authorization": "Bearer EbPc35g68vhVfad1Z4kDe6a",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-purple">PATCH</small>
+<strong><code>api/director/active/{id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>id</b></code>&nbsp;      <br>
+The ID of the User</p>
     </div>
     <div class="dark-box">
                     <div class="lang-selector">
