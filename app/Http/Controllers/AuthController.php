@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function login(LoginPersonnelRequest $request) {
 
         $credentials = $request->only('email', 'password');
-
+        $credentials['active'] = 1;
         if(Auth::attempt($credentials) ) {
             $user = Auth::user();
 

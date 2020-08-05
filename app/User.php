@@ -13,6 +13,9 @@ class User extends Authenticatable
 
     const DIRECTOR = 2;
     const ADMIN = 3;
+    const ACTIVE = 1;
+    const DEACTIVATE = 0;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -65,5 +68,16 @@ class User extends Authenticatable
     public function scopeIsDirector($query)
     {
         return $query->where('role_id', 2);
+    }
+
+    /**
+     * Change user status
+     *
+     * @param [boolean] $active
+     * @return boolean
+     */
+    public static function switchStatus(bool $active) :bool
+    {
+        return $active ? self::DEACTIVATE : self::ACTIVE;
     }
 }

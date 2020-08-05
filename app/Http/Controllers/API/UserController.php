@@ -3,17 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Role;
-use App\Info;
+use App\{User, Role, Info};
 use Illuminate\Http\Request;
-// use App\Http\Requests\StoreDirector;
 use App\Http\Requests\UpdateDirector;
 use Illuminate\Support\Facades\{Validator, Auth};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\UsersResource;
+use App\Http\Resources\{UserResource, UsersResource};
 
 /**
  * @group User management
@@ -197,6 +193,26 @@ class UserController extends Controller
     public function getUser()
     {
         return new UserResource(Auth::user());
+    }
+
+    /**
+     * Update status user active isn`t active
+     * @urlParam id required The ID of the User
+     *
+     * @param \App\User $id
+     * @return \Illuminate\Http\Resources
+     */
+    public function active(int $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+        } catch(ModelNotFoundException $e) {
+            return response()->json(['message' => 'User not found.'], 404);
+        }
+        $user->active = $user::switchStatus($user->active);
+        $user->save();
+        return response()->json(['message' => 'Status updated.']);
+
     }
 
     /**

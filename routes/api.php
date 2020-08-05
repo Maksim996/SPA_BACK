@@ -38,6 +38,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         Route::post('create', 'API\UserController@createDirector');
         Route::get('/{id}', 'API\UserController@getDirector');
         Route::put('/{id}', 'API\UserController@updateDirector');
+        Route::patch('active/{id}', 'API\UserController@active')->where('id','[0-9]+');
     });
 
 });
