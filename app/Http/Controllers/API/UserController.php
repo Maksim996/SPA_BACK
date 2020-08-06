@@ -204,6 +204,9 @@ class UserController extends Controller
      */
     public function active(int $id)
     {
+        if (Auth::id() === $id) {
+            abort(403, 'Forbidden');
+        }
         try {
             $user = User::findOrFail($id);
         } catch(ModelNotFoundException $e) {
