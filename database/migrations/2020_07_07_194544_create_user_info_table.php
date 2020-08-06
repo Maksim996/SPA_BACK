@@ -20,8 +20,8 @@ class CreateUserInfoTable extends Migration
             $table->string('second_name');
             $table->string('patronymic');
             $table->date('birthday');
-            $table->string('phone', 10);
-            $table->string('additional_phone', 10)->nullable();
+            $table->string('phone', 15);
+            $table->string('additional_phone', 15)->nullable();
             $table->string('passport', 9)->unique();
             $table->string('inn_code', 10)->unique();
             $table->boolean('sex');
