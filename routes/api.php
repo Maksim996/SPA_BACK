@@ -20,14 +20,17 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::fallback(function () {
+    return response()->json(['message' => 'Resource not found.'], 404);
+});
 
 Route::post('login', 'AuthController@login');
 
 Route::middleware(['auth:api', 'role'])->group(function() {
     // Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
     //     ->get('logout', 'AuthController@logout');
-    Route::get('show', 'API\UserController@show'); // !scope
-    Route::post('logout', 'AuthController@logout'); // !scope
+    Route::get('user', 'API\UserController@getUser'); // !scope
+    Route::get('logout', 'AuthController@logout'); // !scope
     Route::group(['middleware' => ['scope:root, director, supervisor, administrator, doctor, medical_representative']], function() {
 
 
@@ -38,6 +41,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         Route::post('create', 'API\UserController@createDirector');
         Route::get('/{id}', 'API\UserController@getDirector');
         Route::put('/{id}', 'API\UserController@updateDirector');
+        Route::patch('active/{id}', 'API\UserController@active')->where('id','[0-9]+');
     });
 
 });

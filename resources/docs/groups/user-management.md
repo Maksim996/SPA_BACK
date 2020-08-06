@@ -11,19 +11,19 @@
 
 ```bash
 curl -X GET \
-    -G "http://127.0.0.1:8000/api/show" \
-    -H "Authorization: Bearer Vedg134PEcha8Df6vaZk56b" \
+    -G "http://127.0.0.1:8000/api/user" \
+    -H "Authorization: Bearer EbPZahfkVg68v34ace1d5D6" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/show"
+    "http://127.0.0.1:8000/api/user"
 );
 
 let headers = {
-    "Authorization": "Bearer Vedg134PEcha8Df6vaZk56b",
+    "Authorization": "Bearer EbPZahfkVg68v34ace1d5D6",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -48,11 +48,11 @@ fetch(url, {
 
 ### Request
 <small class="badge badge-green">GET</small>
- **`api/show`**
+ **`api/user`**
 
 
 
-## Display a listing of the resource.
+## Display a listing of the user with role Director.
 
 <small class="badge badge-darkred">requires authentication</small>
 
@@ -63,7 +63,7 @@ fetch(url, {
 ```bash
 curl -X GET \
     -G "http://127.0.0.1:8000/api/director" \
-    -H "Authorization: Bearer kD3h4abfP6vcd1g68ZEaeV5" \
+    -H "Authorization: Bearer 4Zfec1PE8avghb665DdVk3a" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -74,7 +74,7 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer kD3h4abfP6vcd1g68ZEaeV5",
+    "Authorization": "Bearer 4Zfec1PE8avghb665DdVk3a",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -114,10 +114,10 @@ fetch(url, {
 ```bash
 curl -X POST \
     "http://127.0.0.1:8000/api/director/create" \
-    -H "Authorization: Bearer hfv3eD6agEbkZ45aVc6P81d" \
+    -H "Authorization: Bearer dPDb6k1ZEfeh4gav653aVc8" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"minus","second_name":"ut","patronymic":"aut","email":"ratione","birthday":"fugiat","sex":true,"phone":"ab","additional_phone":"officia","passport":"qui","inn_code":"est","image":"voluptatem","description":"aut"}'
+    -d '{"first_name":"quaerat","second_name":"aut","patronymic":"aut","email":"numquam","birthday":"et","sex":true,"phone":"aut","additional_phone":"sit","passport":"tempore","inn_code":"est","image":"ut","description":"magnam"}'
 
 ```
 
@@ -127,24 +127,24 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer hfv3eD6agEbkZ45aVc6P81d",
+    "Authorization": "Bearer dPDb6k1ZEfeh4gav653aVc8",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "minus",
-    "second_name": "ut",
+    "first_name": "quaerat",
+    "second_name": "aut",
     "patronymic": "aut",
-    "email": "ratione",
-    "birthday": "fugiat",
+    "email": "numquam",
+    "birthday": "et",
     "sex": true,
-    "phone": "ab",
-    "additional_phone": "officia",
-    "passport": "qui",
+    "phone": "aut",
+    "additional_phone": "sit",
+    "passport": "tempore",
     "inn_code": "est",
-    "image": "voluptatem",
-    "description": "aut"
+    "image": "ut",
+    "description": "magnam"
 }
 
 fetch(url, {
@@ -211,19 +211,19 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://127.0.0.1:8000/api/director/nisi" \
-    -H "Authorization: Bearer v6bfgcPaeaZ1k86h5d4VE3D" \
+    -G "http://127.0.0.1:8000/api/director/quos" \
+    -H "Authorization: Bearer hPc5vdg18E63beZa64kfVaD" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/nisi"
+    "http://127.0.0.1:8000/api/director/quos"
 );
 
 let headers = {
-    "Authorization": "Bearer v6bfgcPaeaZ1k86h5d4VE3D",
+    "Authorization": "Bearer hPc5vdg18E63beZa64kfVaD",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -266,35 +266,35 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://127.0.0.1:8000/api/director/assumenda" \
-    -H "Authorization: Bearer P3c6ghdb4VaD5Zev1E8fk6a" \
+    "http://127.0.0.1:8000/api/director/consectetur" \
+    -H "Authorization: Bearer DdVP156Eaachgbek6Zvf834" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"excepturi","second_name":"et","patronymic":"libero","birthday":"2020-07-25T17:54:45+0300","sex":false,"phone":"fuga","additional_phone":{},"passport":"velit","inn_code":"labore","image":{}}'
+    -d '{"first_name":"quas","second_name":"reiciendis","patronymic":"commodi","birthday":"2020-08-05T15:53:51+0300","sex":false,"phone":"reiciendis","additional_phone":{},"passport":"consequatur","inn_code":"animi","image":{}}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/assumenda"
+    "http://127.0.0.1:8000/api/director/consectetur"
 );
 
 let headers = {
-    "Authorization": "Bearer P3c6ghdb4VaD5Zev1E8fk6a",
+    "Authorization": "Bearer DdVP156Eaachgbek6Zvf834",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "excepturi",
-    "second_name": "et",
-    "patronymic": "libero",
-    "birthday": "2020-07-25T17:54:45+0300",
+    "first_name": "quas",
+    "second_name": "reiciendis",
+    "patronymic": "commodi",
+    "birthday": "2020-08-05T15:53:51+0300",
     "sex": false,
-    "phone": "fuga",
+    "phone": "reiciendis",
     "additional_phone": {},
-    "passport": "velit",
-    "inn_code": "labore",
+    "passport": "consequatur",
+    "inn_code": "animi",
     "image": {}
 }
 
@@ -354,6 +354,54 @@ fetch(url, {
 
 <code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
     
+
+
+
+## Update status user active isn`t active
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X PATCH \
+    "http://127.0.0.1:8000/api/director/active/nobis" \
+    -H "Authorization: Bearer EbPc35g68vhVfad1Z4kDe6a" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://127.0.0.1:8000/api/director/active/nobis"
+);
+
+let headers = {
+    "Authorization": "Bearer EbPc35g68vhVfad1Z4kDe6a",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### Request
+<small class="badge badge-purple">PATCH</small>
+ **`api/director/active/{id}`**
+
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<code><b>id</b></code>&nbsp;      <br>
+    The ID of the User
 
 
 

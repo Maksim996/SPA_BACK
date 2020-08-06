@@ -651,6 +651,54 @@ fetch(url, {
 
 
 
+## api/{fallbackPlaceholder}
+
+
+
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://127.0.0.1:8000/api/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://127.0.0.1:8000/api/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (404):
+
+```json
+{
+    "message": "Resource not found."
+}
+```
+
+### Request
+<small class="badge badge-green">GET</small>
+ **`api/{fallbackPlaceholder}`**
+
+
+
 ## /
 
 

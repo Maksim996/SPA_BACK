@@ -21,7 +21,7 @@
 
 `php artisan scribe:generate`
 
-Url to documentation `/docs`
+Url to documentation `/docs`. If documents outdated, need remove folder __storage/docs__
 
 ## Start Project
 1. command `composer install`
