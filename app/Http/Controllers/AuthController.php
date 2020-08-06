@@ -44,7 +44,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'token' => $token->accessToken,
-                'role' => $userRole['role']
+                'autoLogin' => true
             ]);
         }
     }

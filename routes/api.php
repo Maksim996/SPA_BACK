@@ -27,7 +27,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     // Route::middleware(['scope:root, supervisor, administrator, doctor, medical_representative'])
     //     ->get('logout', 'AuthController@logout');
     Route::get('show', 'API\UserController@show'); // !scope
-    Route::get('logout', 'AuthController@logout'); // !scope
+    Route::post('logout', 'AuthController@logout'); // !scope
     Route::group(['middleware' => ['scope:root, director, supervisor, administrator, doctor, medical_representative']], function() {
 
 
