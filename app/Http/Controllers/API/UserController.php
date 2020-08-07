@@ -32,43 +32,15 @@ class UserController extends Controller
     /**
      * Create User with role Director
      * @group User management
-     * @bodyParam first_name string required
-     * @bodyParam second_name string required
-     * @bodyParam patronymic string required
-     * @bodyParam email email required email@email.com
-     * @bodyParam birthday date_format:d.m.Y required
-     * @bodyParam sex boolean required Example 1 or 0
-     * @bodyParam phone string required Length 10 chars
-     * @bodyParam additional_phone string Length 10 chars
-     * @bodyParam passport string required Length 9 chars
-     * @bodyParam inn_code sting required Length 10 chars !int
-     * @bodyParam image string
-     * @bodyParam description string
      *
      * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
      */
-    public function createDirector(Request $request)
+    public function createDirector(UpdateDirector $request)
     {
-        // $validated = $request->validated(); // Why it doesn't work. Redirect after fails
-        $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|max:255',
-            'second_name' => 'required|string|max:255',
-            'patronymic' => 'required|string|max:255',
-            'email' => 'required|unique:users|email|max:255',
-            'birthday' => 'required|date',
-            'sex' => 'required|boolean',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:10', // todo
-            'additional_phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|max:10', // tODO +380 need todo
-            'passport' => 'required|unique:user_info|string|size:9', //
-            'inn_code' => 'required|unique:user_info|string|size:10',
-            'image' => 'nullable|mimes:jpeg,bmp,png',
-            'description' => 'nullable|string',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
-        }
+        $validated = $request->validated();
+        // ! Why it doesn't work. Redirect after fails
+        // Need sent header Accept: application/json
 
         $userRole = Role::find(User::DIRECTOR);
 
@@ -134,20 +106,7 @@ class UserController extends Controller
 
         // !validation
         $validated = $request->validated();
-        /*
-        $validatedData = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'second_name' => 'required|string|max:255',
-            'patronymic' => 'required|string|max:255',
-            'birthday' => 'required|date',
-            'sex' => 'required|boolean',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'additional_phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'passport' => 'required|unique:user_info',
-            'inn_code' => 'required|unique:user_info|string|size:10',
-            'image' => 'nullable|mimes:jpeg,bmp,png',
-        ]);
-        */
+        // TODO Need move in model
         $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
 
         $model->info()->update([
