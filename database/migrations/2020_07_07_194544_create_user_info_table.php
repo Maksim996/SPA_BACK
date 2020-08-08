@@ -22,6 +22,7 @@ class CreateUserInfoTable extends Migration
             $table->date('birthday');
             $table->string('phone', 15);
             $table->string('additional_phone', 15)->nullable();
+            $table->boolean('type_passport');
             $table->string('passport', 9)->unique();
             $table->string('inn_code', 10)->unique();
             $table->boolean('sex');

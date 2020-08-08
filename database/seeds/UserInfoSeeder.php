@@ -18,6 +18,7 @@ class UserInfoSeeder extends Seeder
             'patronymic' => 'admin',
             'birthday' => now(),
             'phone' => '380981211111',
+            'type_passport' => 1,
             'passport' => '123456789',
             'inn_code' => '0123456789',
             'sex' => 0,
