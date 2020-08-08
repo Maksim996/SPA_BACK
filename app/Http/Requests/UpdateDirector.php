@@ -27,11 +27,11 @@ class UpdateDirector extends FormRequest
      * @bodyParam email email required email@email.com
      * @bodyParam birthday date_format:d.m.Y required
      * @bodyParam sex boolean required Example 1 or 0
-     * @bodyParam phone string required Length 10 chars
-     * @bodyParam additional_phone string Length 10 chars
+     * @bodyParam phone string required Length 12 chars
+     * @bodyParam additional_phone string Length 12 chars
      * @bodyParam type_passport boolean required Example 1 ID-card or 0 old type
-     * @bodyParam passport string required Length max 9 chars
-     * @bodyParam inn_code sting required Length 10 chars !int
+     * @bodyParam passport string required Max length 9 chars
+     * @bodyParam inn_code sting required Length 10 digits
      * @bodyParam image string
      * @bodyParam description string
      * @return array
