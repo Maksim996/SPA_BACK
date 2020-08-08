@@ -98,20 +98,20 @@ class UserController extends Controller
      */
     public function updateDirector(UpdateDirector $request, $id)
     {
+        $validated = $request->validated();
         try {
             $model = User::findOrFail($id);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'User not found.'], 403);
         }
 
-        // !validation
-        $validated = $request->validated();
+        $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
 
         $model->info()->update([
             'first_name' => $request->first_name,
             'second_name' => $request->second_name,
             'patronymic' => $request->patronymic,
-            'birthday' => $request->birthday,
+            'birthday' => $birthday,
             'sex' => $request->sex,
             'phone' => $request->phone,
             'additional_phone' => $request->additional_phone,

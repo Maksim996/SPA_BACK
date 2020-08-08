@@ -40,6 +40,12 @@ class Info extends Model
     protected $dates = [
         'birthday',
     ];
+    /**
+     * The storage format of the model's date columns.
+     *
+     * @var string
+     */
+    // protected $dateFormat = '';
 
     /**
      * Get user's full name
