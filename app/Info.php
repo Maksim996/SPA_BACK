@@ -32,9 +32,14 @@ class Info extends Model
         'description'
     ];
 
-    // protected $casts = [
-    //     'birthday' => 'date:Y-m-d',
-    // ];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'birthday',
+    ];
 
     /**
      * Get user's full name
@@ -44,5 +49,33 @@ class Info extends Model
     public function getFullNameAttribute()
     {
         return "{$this->second_name} {$this->first_name} {$this->patronymic}";
+    }
+
+    /**
+     * Get formatted date
+     *
+     * @return string;
+     */
+    public function getFormattedBirthdayAttribute() {
+        return $this->birthday->format('d.m.Y');
+    }
+
+    // public function getBirthdayAttribute($value) {
+    //     return $value;
+    // }
+
+    public function getPhoneAttribute($value)
+    {
+        return  '+' . $value;
+    }
+    /**
+     * Get Formatted phone
+     * +38(0##)-###-##-##
+     * @return string;
+     *
+     */
+
+    private function formattedPhone($phone) {
+        return  "+" . $phone[0] . $phone[1] . "(" . $phone[2] . $phone[3] . $phone[4] .")";
     }
 }

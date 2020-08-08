@@ -106,20 +106,18 @@ class UserController extends Controller
 
         // !validation
         $validated = $request->validated();
-        // TODO Need move in model
-        $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
 
         $model->info()->update([
             'first_name' => $request->first_name,
             'second_name' => $request->second_name,
             'patronymic' => $request->patronymic,
-            'birthday' => $birthday,
+            'birthday' => $request->birthday,
             'sex' => $request->sex,
             'phone' => $request->phone,
             'additional_phone' => $request->additional_phone,
             'passport' => $request->passport,
             'inn_code' => $request->inn_code,
-            'image' => $request->image ? $request->image : $model->info->image, // ?
+            // 'image' => $request->image ? $request->image : $model->info->image, // ?
         ]);
         $model->save();
 

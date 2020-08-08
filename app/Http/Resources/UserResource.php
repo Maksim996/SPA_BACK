@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'first_name' => $this->info->first_name,
             'second_name' => $this->info->second_name,
             'patronymic' => $this->info->patronymic,
-            'birthday' => Carbon::CreateFromFormat('Y-m-d', $this->info->birthday)->format('d.m.Y'),
+            'birthday' => $this->info->formattedBirthday,
             'phone' => $this->info->phone,
             'additional_phone' => $this->info->additional_phone,
             'passport' => $this->info->passport,
