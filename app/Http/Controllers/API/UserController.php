@@ -20,7 +20,13 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the user with role Director.
-     *
+     * @response {
+     *  'id' => 1,
+     *  'email' => 'email@email.com',
+     *  'fullName' => 'first_name second_name patronymic',
+     *  'phone' => '+380501234567',
+     *  'birthday' => '01.01.2000',
+     * }
      * @group User management
      * @return \Illuminate\Http\Response
      */
@@ -154,6 +160,7 @@ class UserController extends Controller
 
     /**
      * Update status user active isn`t active
+     * @group User management
      * @urlParam id required The ID of the User
      *
      * @param \App\User $id
