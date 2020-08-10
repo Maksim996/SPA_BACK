@@ -66,6 +66,7 @@ class UserController extends Controller
             'birthday' => $request->birthday,
             'phone' => $request->phone,
             'additional_phone' => $request->additional_phone,
+            'type_passport' => $request->type_passport,
             'passport' => $request->passport,
             'inn_code' => $request->inn_code,
             'sex' => $request->sex,
@@ -121,6 +122,7 @@ class UserController extends Controller
             'sex' => $request->sex,
             'phone' => $request->phone,
             'additional_phone' => $request->additional_phone,
+            'type_passport' => $request->type_passport,
             'passport' => $request->passport,
             'inn_code' => $request->inn_code,
             // 'image' => $request->image ? $request->image : $model->info->image, // ?
