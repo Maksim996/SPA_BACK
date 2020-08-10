@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "MS API",
-        "_postman_id": "82a2e17e-44b2-41c2-8eab-8762396fb73a",
+        "_postman_id": "6e60dfa5-68ac-44d6-a86a-d568226a2458",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -34,7 +34,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"ipsum\",\n    \"password\": \"id\"\n}",
+                            "raw": "{\n    \"email\": \"error\",\n    \"password\": \"quo\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -683,7 +683,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer EbPZahfkVg68v34ace1d5D6"
+                                "value": "Bearer cZfg81k3bPd4eavVh6aE5D6"
                             },
                             {
                                 "key": "Content-Type",
@@ -721,7 +721,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer 4Zfec1PE8avghb665DdVk3a"
+                                "value": "Bearer 6V56akc4bEdZePhvf318agD"
                             },
                             {
                                 "key": "Content-Type",
@@ -759,7 +759,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer dPDb6k1ZEfeh4gav653aVc8"
+                                "value": "Bearer gP5akDafbvcE6483hVd6Z1e"
                             },
                             {
                                 "key": "Content-Type",
@@ -772,7 +772,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"quaerat\",\n    \"second_name\": \"aut\",\n    \"patronymic\": \"aut\",\n    \"email\": \"numquam\",\n    \"birthday\": \"et\",\n    \"sex\": true,\n    \"phone\": \"aut\",\n    \"additional_phone\": \"sit\",\n    \"passport\": \"tempore\",\n    \"inn_code\": \"est\",\n    \"image\": \"ut\",\n    \"description\": \"magnam\"\n}",
+                            "raw": "{\n    \"first_name\": \"et\",\n    \"second_name\": \"voluptas\",\n    \"patronymic\": \"non\",\n    \"email\": \"johan66@example.org\",\n    \"birthday\": \"2020-08-10\",\n    \"sex\": false,\n    \"phone\": \"facilis\",\n    \"additional_phone\": {},\n    \"type_passport\": false,\n    \"passport\": \"exercitationem\",\n    \"inn_code\": \"est\",\n    \"image\": {}\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -796,7 +796,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quos",
+                                    "value": "totam",
                                     "description": "The ID of the user."
                                 }
                             ]
@@ -805,7 +805,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer hPc5vdg18E63beZa64kfVaD"
+                                "value": "Bearer 61DvfE45g6eVZhaPb8kadc3"
                             },
                             {
                                 "key": "Content-Type",
@@ -842,7 +842,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consectetur",
+                                    "value": "non",
                                     "description": "The ID of the User"
                                 }
                             ]
@@ -851,7 +851,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer DdVP156Eaachgbek6Zvf834"
+                                "value": "Bearer fb46e18Z3dP6Vhca5DgvakE"
                             },
                             {
                                 "key": "Content-Type",
@@ -864,7 +864,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"first_name\": \"quas\",\n    \"second_name\": \"reiciendis\",\n    \"patronymic\": \"commodi\",\n    \"birthday\": \"2020-08-05T15:53:51+0300\",\n    \"sex\": false,\n    \"phone\": \"reiciendis\",\n    \"additional_phone\": {},\n    \"passport\": \"consequatur\",\n    \"inn_code\": \"animi\",\n    \"image\": {}\n}",
+                            "raw": "{\n    \"first_name\": \"libero\",\n    \"second_name\": \"voluptatum\",\n    \"patronymic\": \"aut\",\n    \"email\": \"vidal.emard@example.com\",\n    \"birthday\": \"2020-08-10\",\n    \"sex\": false,\n    \"phone\": \"quia\",\n    \"additional_phone\": {},\n    \"type_passport\": false,\n    \"passport\": \"dolores\",\n    \"inn_code\": \"et\",\n    \"image\": {}\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -888,7 +888,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nobis",
+                                    "value": "sint",
                                     "description": "The ID of the User"
                                 }
                             ]
@@ -897,7 +897,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "Bearer EbPc35g68vhVfad1Z4kDe6a"
+                                "value": "Bearer 3g1VkZPhe56dv6Db4Eaf8ca"
                             },
                             {
                                 "key": "Content-Type",

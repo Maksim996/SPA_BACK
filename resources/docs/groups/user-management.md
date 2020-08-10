@@ -12,7 +12,7 @@
 ```bash
 curl -X GET \
     -G "http://127.0.0.1:8000/api/user" \
-    -H "Authorization: Bearer EbPZahfkVg68v34ace1d5D6" \
+    -H "Authorization: Bearer cZfg81k3bPd4eavVh6aE5D6" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -23,7 +23,7 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer EbPZahfkVg68v34ace1d5D6",
+    "Authorization": "Bearer cZfg81k3bPd4eavVh6aE5D6",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -38,11 +38,25 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
 {
-    "message": "Unauthenticated."
+    "data": {
+        "id": 1,
+        "role_id": 1,
+        "email": "sadmin@gmail.com",
+        "first_name": "Admin",
+        "second_name": "admin",
+        "patronymic": "admin",
+        "birthday": "2020-08-10",
+        "phone": "+380981211111",
+        "additional_phone": null,
+        "passport": "123456789",
+        "inn_code": "0123456789",
+        "sex": 0,
+        "image": null
+    }
 }
 ```
 
@@ -63,7 +77,7 @@ fetch(url, {
 ```bash
 curl -X GET \
     -G "http://127.0.0.1:8000/api/director" \
-    -H "Authorization: Bearer 4Zfec1PE8avghb665DdVk3a" \
+    -H "Authorization: Bearer 6V56akc4bEdZePhvf318agD" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
@@ -74,7 +88,7 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer 4Zfec1PE8avghb665DdVk3a",
+    "Authorization": "Bearer 6V56akc4bEdZePhvf318agD",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -89,11 +103,26 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
 {
-    "message": "Unauthenticated."
+    "data": [
+        {
+            "id": 1,
+            "email": "sadmin@gmail.com",
+            "fullName": "admin Admin admin",
+            "phone": "+380981211111",
+            "birthday": "2020-08-10"
+        },
+        {
+            "id": 1,
+            "email": "sadmin@gmail.com",
+            "fullName": "admin Admin admin",
+            "phone": "+380981211111",
+            "birthday": "2020-08-10"
+        }
+    ]
 }
 ```
 
@@ -114,10 +143,10 @@ fetch(url, {
 ```bash
 curl -X POST \
     "http://127.0.0.1:8000/api/director/create" \
-    -H "Authorization: Bearer dPDb6k1ZEfeh4gav653aVc8" \
+    -H "Authorization: Bearer gP5akDafbvcE6483hVd6Z1e" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"quaerat","second_name":"aut","patronymic":"aut","email":"numquam","birthday":"et","sex":true,"phone":"aut","additional_phone":"sit","passport":"tempore","inn_code":"est","image":"ut","description":"magnam"}'
+    -d '{"first_name":"et","second_name":"voluptas","patronymic":"non","email":"johan66@example.org","birthday":"2020-08-10","sex":false,"phone":"facilis","additional_phone":{},"type_passport":false,"passport":"exercitationem","inn_code":"est","image":{}}'
 
 ```
 
@@ -127,24 +156,24 @@ const url = new URL(
 );
 
 let headers = {
-    "Authorization": "Bearer dPDb6k1ZEfeh4gav653aVc8",
+    "Authorization": "Bearer gP5akDafbvcE6483hVd6Z1e",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "quaerat",
-    "second_name": "aut",
-    "patronymic": "aut",
-    "email": "numquam",
-    "birthday": "et",
-    "sex": true,
-    "phone": "aut",
-    "additional_phone": "sit",
-    "passport": "tempore",
+    "first_name": "et",
+    "second_name": "voluptas",
+    "patronymic": "non",
+    "email": "johan66@example.org",
+    "birthday": "2020-08-10",
+    "sex": false,
+    "phone": "facilis",
+    "additional_phone": {},
+    "type_passport": false,
+    "passport": "exercitationem",
     "inn_code": "est",
-    "image": "ut",
-    "description": "magnam"
+    "image": {}
 }
 
 fetch(url, {
@@ -157,6 +186,13 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "message": "User added successfully."
+}
+```
 
 ### Request
 <small class="badge badge-black">POST</small>
@@ -172,31 +208,31 @@ fetch(url, {
 <code><b>patronymic</b></code>&nbsp; <small>string</small>     <br>
     
 
-<code><b>email</b></code>&nbsp; <small>email</small>     <br>
-    email@email.com
+<code><b>email</b></code>&nbsp; <small>string</small>     <br>
+    email The value must be a valid email address.
 
-<code><b>birthday</b></code>&nbsp; <small>date_format:d.m.Y</small>     <br>
-    
+<code><b>birthday</b></code>&nbsp; <small>string</small>     <br>
+    The value must be a valid date. The value must be a valid date in the format Y-m-d.
 
 <code><b>sex</b></code>&nbsp; <small>boolean</small>     <br>
-    Example 1 or 0
-
-<code><b>phone</b></code>&nbsp; <small>string</small>     <br>
-    Length 10 chars
-
-<code><b>additional_phone</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
-    Length 10 chars
-
-<code><b>passport</b></code>&nbsp; <small>string</small>     <br>
-    Length 9 chars
-
-<code><b>inn_code</b></code>&nbsp; <small>sting</small>     <br>
-    Length 10 chars !int
-
-<code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
     
 
-<code><b>description</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
+<code><b>phone</b></code>&nbsp; <small>string</small>     <br>
+    
+
+<code><b>additional_phone</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
+    
+
+<code><b>type_passport</b></code>&nbsp; <small>boolean</small>     <br>
+    Example 1 ID-card or 0 old type.
+
+<code><b>passport</b></code>&nbsp; <small>string</small>     <br>
+    Max length 9 chars example ID-card 000000001 old type BM000001.
+
+<code><b>inn_code</b></code>&nbsp; <small>string</small>     <br>
+    inn_code length digits 10.
+
+<code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
     
 
 
@@ -211,19 +247,19 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://127.0.0.1:8000/api/director/quos" \
-    -H "Authorization: Bearer hPc5vdg18E63beZa64kfVaD" \
+    -G "http://127.0.0.1:8000/api/director/totam" \
+    -H "Authorization: Bearer 61DvfE45g6eVZhaPb8kadc3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/quos"
+    "http://127.0.0.1:8000/api/director/totam"
 );
 
 let headers = {
-    "Authorization": "Bearer hPc5vdg18E63beZa64kfVaD",
+    "Authorization": "Bearer 61DvfE45g6eVZhaPb8kadc3",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -238,11 +274,25 @@ fetch(url, {
 ```
 
 
-> Example response (401):
+> Example response (200):
 
 ```json
 {
-    "message": "Unauthenticated."
+    "data": {
+        "id": 1,
+        "role_id": 1,
+        "email": "sadmin@gmail.com",
+        "first_name": "Admin",
+        "second_name": "admin",
+        "patronymic": "admin",
+        "birthday": "2020-08-10",
+        "phone": "+380981211111",
+        "additional_phone": null,
+        "passport": "123456789",
+        "inn_code": "0123456789",
+        "sex": 0,
+        "image": null
+    }
 }
 ```
 
@@ -266,35 +316,37 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://127.0.0.1:8000/api/director/consectetur" \
-    -H "Authorization: Bearer DdVP156Eaachgbek6Zvf834" \
+    "http://127.0.0.1:8000/api/director/non" \
+    -H "Authorization: Bearer fb46e18Z3dP6Vhca5DgvakE" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"first_name":"quas","second_name":"reiciendis","patronymic":"commodi","birthday":"2020-08-05T15:53:51+0300","sex":false,"phone":"reiciendis","additional_phone":{},"passport":"consequatur","inn_code":"animi","image":{}}'
+    -d '{"first_name":"libero","second_name":"voluptatum","patronymic":"aut","email":"vidal.emard@example.com","birthday":"2020-08-10","sex":false,"phone":"quia","additional_phone":{},"type_passport":false,"passport":"dolores","inn_code":"et","image":{}}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/consectetur"
+    "http://127.0.0.1:8000/api/director/non"
 );
 
 let headers = {
-    "Authorization": "Bearer DdVP156Eaachgbek6Zvf834",
+    "Authorization": "Bearer fb46e18Z3dP6Vhca5DgvakE",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "first_name": "quas",
-    "second_name": "reiciendis",
-    "patronymic": "commodi",
-    "birthday": "2020-08-05T15:53:51+0300",
+    "first_name": "libero",
+    "second_name": "voluptatum",
+    "patronymic": "aut",
+    "email": "vidal.emard@example.com",
+    "birthday": "2020-08-10",
     "sex": false,
-    "phone": "reiciendis",
+    "phone": "quia",
     "additional_phone": {},
-    "passport": "consequatur",
-    "inn_code": "animi",
+    "type_passport": false,
+    "passport": "dolores",
+    "inn_code": "et",
     "image": {}
 }
 
@@ -313,6 +365,14 @@ fetch(url, {
 ```json
 {
     "message": "User updated successfully"
+}
+```
+> Example response (404, user not found):
+
+```json
+
+{
+  "message" => "User not found."
 }
 ```
 
@@ -334,8 +394,11 @@ fetch(url, {
 <code><b>patronymic</b></code>&nbsp; <small>string</small>     <br>
     
 
+<code><b>email</b></code>&nbsp; <small>string</small>     <br>
+    email The value must be a valid email address.
+
 <code><b>birthday</b></code>&nbsp; <small>string</small>     <br>
-    The value must be a valid date.
+    The value must be a valid date. The value must be a valid date in the format Y-m-d.
 
 <code><b>sex</b></code>&nbsp; <small>boolean</small>     <br>
     
@@ -346,11 +409,14 @@ fetch(url, {
 <code><b>additional_phone</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
     
 
+<code><b>type_passport</b></code>&nbsp; <small>boolean</small>     <br>
+    Example 1 ID-card or 0 old type.
+
 <code><b>passport</b></code>&nbsp; <small>string</small>     <br>
-    
+    Max length 9 chars example ID-card 000000001 old type BM000001.
 
 <code><b>inn_code</b></code>&nbsp; <small>string</small>     <br>
-    
+    inn_code length digits 10.
 
 <code><b>image</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
     
@@ -367,19 +433,19 @@ fetch(url, {
 
 ```bash
 curl -X PATCH \
-    "http://127.0.0.1:8000/api/director/active/nobis" \
-    -H "Authorization: Bearer EbPc35g68vhVfad1Z4kDe6a" \
+    "http://127.0.0.1:8000/api/director/active/sint" \
+    -H "Authorization: Bearer 3g1VkZPhe56dv6Db4Eaf8ca" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://127.0.0.1:8000/api/director/active/nobis"
+    "http://127.0.0.1:8000/api/director/active/sint"
 );
 
 let headers = {
-    "Authorization": "Bearer EbPc35g68vhVfad1Z4kDe6a",
+    "Authorization": "Bearer 3g1VkZPhe56dv6Db4Eaf8ca",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -394,6 +460,21 @@ fetch(url, {
 ```
 
 
+> Example response (200):
+
+```json
+{
+    "message": "Status updated."
+}
+```
+> Example response (404, user not found):
+
+```json
+
+{
+  "message" => "User not found."
+}
+```
 
 ### Request
 <small class="badge badge-purple">PATCH</small>

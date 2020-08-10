@@ -20,14 +20,10 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the user with role Director.
-     * @response {
-     *  'id' => 1,
-     *  'email' => 'email@email.com',
-     *  'fullName' => 'first_name second_name patronymic',
-     *  'phone' => '+380501234567',
-     *  'birthday' => '01.01.2000',
-     * }
      * @group User management
+     *
+     * @apiResourceCollection App\Http\Resources\UsersResource
+     * @apiResourceModel App\User
      * @return \Illuminate\Http\Response
      */
     public function indexDirector()
@@ -38,6 +34,10 @@ class UserController extends Controller
     /**
      * Create User with role Director
      * @group User management
+     *
+     * @response {
+     *   "message": "User added successfully."
+     * }
      *
      * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
@@ -73,13 +73,15 @@ class UserController extends Controller
         ]);
         $user->info()->save($info);
 
-        return response()->json(['message' => 'User added successfully!']);
+        return response()->json(['message' => 'User added successfully.']);
     }
 
     /**
      * Get user data
      * @group User management
      * @urlParam id required The ID of the user.
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\User
      *
      * @param int $id
      * @return \Illuminate\Http\Response
@@ -98,7 +100,9 @@ class UserController extends Controller
      * @group User management
      * @urlParam id required The ID of the User
      * @response { "message": "User updated successfully" }
-     *
+     * @response status=404 scenario="user not found" {
+     *   "message" => "User not found."
+     * }
      * @param App\Http\Requests\UpdateDirector $request
      * @param  \App\User  $id
      * @return \Illuminate\Http\Response
@@ -112,13 +116,13 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found.'], 403);
         }
 
-        $birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
+        //$birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
 
         $model->info()->update([
             'first_name' => $request->first_name,
             'second_name' => $request->second_name,
             'patronymic' => $request->patronymic,
-            'birthday' => $birthday,
+            'birthday' => $request->birthday,
             'sex' => $request->sex,
             'phone' => $request->phone,
             'additional_phone' => $request->additional_phone,
@@ -152,6 +156,8 @@ class UserController extends Controller
     /**
      * Display profile the authenticated user.
      * @group User management
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\User
      *
      * @return \Illuminate\Http\Response
      */
@@ -165,6 +171,12 @@ class UserController extends Controller
      * @group User management
      * @urlParam id required The ID of the User
      *
+     * @response {
+     *   "message": "Status updated."
+     * }
+     * @response status=404 scenario="user not found" {
+     *   "message" => "User not found."
+     * }
      * @param \App\User $id
      * @return \Illuminate\Http\Resources
      */

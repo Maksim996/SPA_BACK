@@ -24,16 +24,15 @@ class UpdateDirector extends FormRequest
      * @bodyParam first_name string required
      * @bodyParam second_name string required
      * @bodyParam patronymic string required
-     * @bodyParam email email required email@email.com
-     * @bodyParam birthday date_format:d.m.Y required
+     * @bodyParam birthday date_format:Y-m-d required
      * @bodyParam sex boolean required Example 1 or 0
      * @bodyParam phone string required Length 12 chars
      * @bodyParam additional_phone string Length 12 chars
-     * @bodyParam type_passport boolean required Example 1 ID-card or 0 old type
-     * @bodyParam passport string required Max length 9 chars
+     * @bodyParam passport string required
      * @bodyParam inn_code sting required Length 10 digits
      * @bodyParam image string
      * @bodyParam description string
+     *
      * @return array
      */
     public function rules()
@@ -48,7 +47,7 @@ class UpdateDirector extends FormRequest
                 'max:255',
                 Rule::unique('users')->ignore($this->id),
             ],
-            'birthday' => 'required|date|date_format:d.m.Y',
+            'birthday' => 'required|date|date_format:Y-m-d',
             'sex' => 'required|boolean',
             'phone' => 'required|starts_with:380|digits:12',
             'additional_phone' => 'nullable|starts_with:380|digits:12',
@@ -73,8 +72,11 @@ class UpdateDirector extends FormRequest
             'email' => [
                 'description' => 'email',
             ],
+            'type_passport' => [
+                'description' => 'Example 1 ID-card or 0 old type'
+            ],
             'passport' => [
-                'description' => 'passport'
+                'description' => 'Max length 9 chars example ID-card 000000001 old type BM000001'
             ],
             'inn_code' => [
                 'description' => 'inn_code length digits 10'

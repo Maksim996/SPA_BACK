@@ -25,6 +25,7 @@ class Info extends Model
         'birthday',
         'phone',
         'additional_phone',
+        'type_passport',
         'passport',
         'inn_code',
         'sex',
@@ -38,14 +39,8 @@ class Info extends Model
      * @var array
      */
     protected $dates = [
-        'birthday',
+        'birthday' => 'date:Y-m-d',
     ];
-    /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
-     */
-    // protected $dateFormat = '';
 
     /**
      * Get user's full name

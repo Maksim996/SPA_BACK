@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'first_name' => $this->info->first_name,
             'second_name' => $this->info->second_name,
             'patronymic' => $this->info->patronymic,
-            'birthday' => $this->info->formattedBirthday,
+            'birthday' => $this->info->birthday,
             'phone' => $this->info->phone,
             'additional_phone' => $this->info->additional_phone,
             'passport' => $this->info->passport,
