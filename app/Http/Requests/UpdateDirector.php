@@ -36,7 +36,7 @@ class UpdateDirector extends FormRequest
      * @bodyParam description string
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
             'first_name' => 'required|string|max:255',
@@ -46,24 +46,39 @@ class UpdateDirector extends FormRequest
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore($request->id),
+                Rule::unique('users')->ignore($this->id),
             ],
             'birthday' => 'required|date|date_format:d.m.Y',
             'sex' => 'required|boolean',
             'phone' => 'required|starts_with:380|digits:12',
-            'additional_phone' => 'starts_with:380|digits:12',
+            'additional_phone' => 'nullable|starts_with:380|digits:12',
             'type_passport' => 'required|boolean',
             'passport' => [
                 'required',
                 // 'size:9',// ! check type passport
-                Rule::unique('user_info')->ignore($request->id),
+                Rule::unique('user_info')->ignore($this->id),
             ],
             'inn_code' => [
                 'required',
                 'digits:10',
-                Rule::unique('user_info')->ignore($request->id),
+                Rule::unique('user_info')->ignore($this->id),
             ],
             'image' => 'nullable|mimes:jpeg,bmp,png',
+        ];
+    }
+
+    public function bodyParameters()
+    {
+        return [
+            'email' => [
+                'description' => 'email',
+            ],
+            'passport' => [
+                'description' => 'passport'
+            ],
+            'inn_code' => [
+                'description' => 'inn_code length digits 10'
+            ]
         ];
     }
 }
