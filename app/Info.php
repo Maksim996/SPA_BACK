@@ -57,7 +57,8 @@ class Info extends Model
      *
      * @return string;
      */
-    public function getFormattedBirthdayAttribute() {
+    public function getFormattedBirthdayAttribute()
+    {
         return $this->birthday->format('d.m.Y');
     }
 
@@ -67,16 +68,65 @@ class Info extends Model
 
     public function getPhoneAttribute($value)
     {
-        return  '+' . $value;
+        return  $value;
+    }
+
+    /**
+     * Get formatted phone
+     *
+     * @return string
+     */
+    public function getPhoneFormatAttribute()
+    {
+        return self::formattedPhone($this->phone);
+    }
+
+    public function getPhoneNationalAttribute()
+    {
+        $phoneWithoutCodeCountry = substr($this->phone, 3);
+        $withoutCodeOperator = substr($phoneWithoutCodeCountry, 2);
+
+        $codeOperator = substr($phoneWithoutCodeCountry, 0, 2);
+        $minor = substr($withoutCodeOperator, 0, 3);
+        $last = str_split(substr($withoutCodeOperator, 3), 2);
+
+
+        return implode ('-', [
+            $codeOperator,
+            $minor,
+            $last[0],
+            $last[1]
+        ]);
+    }
+
+    public function getAdditionalPhoneFormatAttribute()
+    {
+        return self::formattedPhone($this->attributes['additional_phone']);
     }
     /**
-     * Get Formatted phone
-     * +38(0##)-###-##-##
-     * @return string;
+     * Formatted phone mask +38(0##) ### ## ##
      *
+     * @param $phone string
+     * @return string;
      */
 
-    private function formattedPhone($phone) {
-        return  "+" . $phone[0] . $phone[1] . "(" . $phone[2] . $phone[3] . $phone[4] .")";
+    private static function formattedPhone($phone)
+    {
+        if ($phone && strlen($phone) === 12) {
+            $half = str_split($phone, 5);
+            $firstHalf = str_split($half[0], 2);
+
+            $codeWithOperator = "+$firstHalf[0] ($firstHalf[1]$firstHalf[2])";
+            $phone = str_split($half[1], 3);
+            $formatePhone = [
+                $codeWithOperator,
+                $phone[0],
+                $phone[1],
+                $half[2]
+            ];
+
+            return implode(' ', $formatePhone);
+        }
+        return $phone;
     }
 }
