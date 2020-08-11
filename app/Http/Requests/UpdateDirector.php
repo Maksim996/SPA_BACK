@@ -31,7 +31,8 @@ class UpdateDirector extends FormRequest
      * @bodyParam passport string required
      * @bodyParam inn_code sting required Length 10 digits
      * @bodyParam image string
-     * @bodyParam description string
+     * @bodyParam background_url string Max 255 chars
+     * @bodyParam description string Max 500 chars
      *
      * @return array
      */
@@ -62,7 +63,9 @@ class UpdateDirector extends FormRequest
                 'digits:10',
                 Rule::unique('user_info')->ignore($this->id),
             ],
-            'image' => 'nullable|mimes:jpeg,bmp,png',
+            'image' => 'nullable|mimes:jpeg,bmp,png|max:255',
+            'background_url' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:500'
         ];
     }
 

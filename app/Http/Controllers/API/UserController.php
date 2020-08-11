@@ -129,6 +129,7 @@ class UserController extends Controller
             'type_passport' => $request->type_passport,
             'passport' => $request->passport,
             'inn_code' => $request->inn_code,
+            'background_url' => $request->background_url,
             // 'image' => $request->image ? $request->image : $model->info->image, // ?
         ]);
         $model->save();

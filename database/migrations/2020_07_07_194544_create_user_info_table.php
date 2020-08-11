@@ -28,6 +28,7 @@ class CreateUserInfoTable extends Migration
             $table->boolean('sex');
             $table->text('image')->nullable();
             $table->text('description')->nullable();
+            $table->string('background_url')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
