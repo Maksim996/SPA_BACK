@@ -30,6 +30,7 @@ class Info extends Model
         'inn_code',
         'sex',
         'image',
+        'background_url',
         'description'
     ];
 
@@ -57,22 +58,22 @@ class Info extends Model
      *
      * @return string;
      */
-    public function getFormattedBirthdayAttribute()
+    public function getFormattedBirthdayAttribute() :string
     {
         return $this->birthday->format('d.m.Y');
     }
 
-    // public function getBirthdayAttribute($value) {
-    //     return $value;
-    // }
-
-    public function getPhoneAttribute($value)
-    {
-        return  $value;
-    }
-
     /**
-     * Get formatted phone
+     * Get short phone number
+     *
+     * @return string
+     */
+    public function getShortPhoneAttribute() :string
+    {
+        return substr($this->phone, 3);
+    }
+    /**
+     * Get phone in format +38(0##) ### ## ##
      *
      * @return string
      */
@@ -81,24 +82,18 @@ class Info extends Model
         return self::formattedPhone($this->phone);
     }
 
-    public function getPhoneNationalAttribute()
+    public function getShortAdditionalPhoneAttribute()
     {
-        $phoneWithoutCodeCountry = substr($this->phone, 3);
-        $withoutCodeOperator = substr($phoneWithoutCodeCountry, 2);
-
-        $codeOperator = substr($phoneWithoutCodeCountry, 0, 2);
-        $minor = substr($withoutCodeOperator, 0, 3);
-        $last = str_split(substr($withoutCodeOperator, 3), 2);
-
-
-        return implode ('-', [
-            $codeOperator,
-            $minor,
-            $last[0],
-            $last[1]
-        ]);
+        if ($this->attributes['additional_phone']) {
+            return substr($this->attributes['additional_phone'], 3);
+        }
+        return;
     }
-
+    /**
+     * Get additional phone in format +38(0##) ### ## ##
+     *
+     * @return string
+     */
     public function getAdditionalPhoneFormatAttribute()
     {
         return self::formattedPhone($this->attributes['additional_phone']);
