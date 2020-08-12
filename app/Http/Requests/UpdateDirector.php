@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Info;
-use Illuminate\Http\Request;
+use App\Rules\Passport;
 use Illuminate\Validation\Rule;
 
 class UpdateDirector extends FormRequest
@@ -55,7 +55,9 @@ class UpdateDirector extends FormRequest
             'type_passport' => 'required|boolean',
             'passport' => [
                 'required',
-                // 'size:9',// ! check type passport
+                'string',
+                'max:9',
+                new Passport($this->type_passport),
                 Rule::unique('user_info')->ignore($this->id),
             ],
             'inn_code' => [
