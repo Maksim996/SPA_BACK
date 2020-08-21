@@ -55,5 +55,11 @@
   "You are receiving this email because we received a password reset request for your account.": "Ви отримали цей електронний лист, оскільки ми отримали запит на скидання паролю для вашого облікового запису.",
   "Whoops!": "Ой!",
   "Your email address is not verified.": "Ваша електронна адреса не підтверджена.",
-  "Whoops, something went wrong on our servers.": "Ой, щось пішло не так на наших серверах."
+  "Whoops, something went wrong on our servers.": "Ой, щось пішло не так на наших серверах.",
+  "User added successfully": "Користувач створений",
+  "User Not found": "Користувача не знайдено",
+  "User updated successfully": "Дані користувача оновлено",
+  "Status updated": "Статус оновлено",
+  "Password updated": "Пароль оновлено",
+  "Password Not match": "Пароль не збігається з дійсним"
 }

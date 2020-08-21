@@ -34,4 +34,13 @@ class UpdatePassword extends FormRequest
 
         ];
     }
+
+    /**
+     * @var array $response Is our response data.
+     */
+    $response = [
+        "success" => false, // Here I added a new field on JSON response.
+        "message" => __("Los datos enviados no son válidos."), // Here I used a custom message.
+        "errors" => $validator->errors(), // And do not forget to add the common errors.
+    ];
 }

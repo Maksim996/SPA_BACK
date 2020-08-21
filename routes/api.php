@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::fallback(function () {
-    return response()->json(['message' => 'Resource not found.'], 404);
+    return response()->json(['message' => __('Service Unavailable')], 404);
 });
 
 Route::post('login', 'AuthController@login');

@@ -73,7 +73,7 @@ class UserController extends Controller
         ]);
         $user->info()->save($info);
 
-        return response()->json(['message' => 'User added successfully.']);
+        return response()->json(['message' => __('User added successfully')]);
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
         try {
             return new UserResource(User::findOrFail($id));
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'User not found.'], 404);
+            return response()->json(['message' => __('User Not found')], 404);
         }
     }
 
@@ -113,7 +113,7 @@ class UserController extends Controller
         try {
             $model = User::findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'User not found.'], 403);
+            return response()->json(['message' => __('User Not found')], 404);
         }
 
         //$birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
@@ -140,7 +140,7 @@ class UserController extends Controller
 
         $model->save();
 
-        return response()->json(['message' => 'User updated successfully.']);
+        return response()->json(['message' => __('User updated successfully')]);
     }
 
     /**
@@ -189,11 +189,11 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
         } catch(ModelNotFoundException $e) {
-            return response()->json(['message' => 'User not found.'], 404);
+            return response()->json(['message' => __('User Not found')], 404);
         }
         $user->active = $user::switchStatus($user->active);
         $user->save();
-        return response()->json(['message' => 'Status updated.']);
+        return response()->json(['message' => __('Status updated')]);
 
     }
 
@@ -235,13 +235,15 @@ class UserController extends Controller
 
         $old_password = $request->old_password;
 
+        // ! Валідацію перенести в UpdatePassword
+        // todo  "message": "The given data was invalid.",
         if (Hash::check($old_password, $request->user()->password)) {
             $request->user()->fill([
                 'password' => Hash::make($request->password)
             ])->save();
-            return response()->json(['message' => 'Password updated.']);
+            return response()->json(['message' => __('Password updated')]);
         }
 
-        return response()->json(['message' => 'Check password.']);
+        return response()->json(['message' => __('Password Not match')]);
     }
 }
