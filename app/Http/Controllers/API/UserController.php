@@ -5,11 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\{User, Role, Info};
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateDirector;
-use Illuminate\Support\Facades\{Validator, Auth};
+use App\Http\Requests\{ UpdateDirector, UpdatePassword };
+use Illuminate\Support\Facades\{Validator, Auth, Hash};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
-use App\Http\Resources\{UserResource, UsersResource};
+use App\Http\Resources\{ UserResource, UsersResource };
 
 /**
  * @group User management
@@ -218,5 +218,30 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    /**
+     * Update the password for the user.
+     *
+     * @response {
+     *   "message": "Password updated."
+     * }
+     * @param UpdatePassword $request
+     * @return Illuminate\Http\Response
+     */
+    public function changePassword(UpdatePassword $request)
+    {
+        $validated = $request->validated();
+
+        $old_password = $request->old_password;
+
+        if (Hash::check($old_password, $request->user()->password)) {
+            $request->user()->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+            return response()->json(['message' => 'Password updated.']);
+        }
+
+        return response()->json(['message' => 'Check password.']);
     }
 }

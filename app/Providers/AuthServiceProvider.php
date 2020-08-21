@@ -27,10 +27,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
-
+        // Gate::define('change-password', function ($user) {
+        //     return $user->id;
+        // });
         // Define Scope
         Passport::tokensCan([
             'root' => 'Add/Edit/Delete directors',
+            'change-password' => 'User can ch password',
             'director' => 'Make description',
             'supervisor' => 'Make description',
             'administrator' => 'Make description',

@@ -19,6 +19,8 @@ class LoginPersonnelRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @bodyParam email string required
+     * @bodyParam password string required Min 8 chars
      * @return array
      */
     public function rules()

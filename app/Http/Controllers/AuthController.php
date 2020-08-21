@@ -37,10 +37,21 @@ class AuthController extends Controller
             if ($userRole) {
                 $this->scope = $userRole->role;
             }
+            $role = $userRole->role;
+            $scope = [];
 
-            $token = $user->createToken($user->email . '_' . now(), [
-                $this->scope
-            ]);
+            switch ($role) {
+                case 'root':
+                    // $scope[] = $this->scope;
+                    array_push($scope, 'change-password', $this->scope);
+                    break;
+                case 'director':
+                    array_push($scope, 'change-password', $this->scope);
+                    break;
+                default:
+                    $this->scope;
+            }
+            $token = $user->createToken($user->email . '_' . now(), $scope);
 
             return response()->json([
                 'token' => $token->accessToken,
