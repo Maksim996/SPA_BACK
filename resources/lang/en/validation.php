@@ -133,6 +133,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'id-card' => [
+            'message' => 'The :attribute must be digits and length 9 char.',
+        ],
+        'passport' => [
+            'message' => 'The :attribute must match the formats ВМ000000.',
+        ],
     ],
 
     /*
@@ -146,6 +152,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'passport' => 'Passport'
+    ],
 
 ];

@@ -49,6 +49,9 @@ class Passport implements Rule
      */
     public function message()
     {
-        return 'Invalid document format.';
+        if ($this->type) {
+            return trans('validation.custom.id-card');
+        }
+        return trans('validation.custom.passport');
     }
 }

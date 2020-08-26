@@ -138,8 +138,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'id-card' => [
+            'message' => 'Поле :attribute должно содержать цифри и иметь длинну 9 символов.',
+        ],
+        'passport' => [
+            'message' => 'Поле :attribute должно иметь формат ВМ000000.',
         ],
     ],
 
@@ -190,5 +193,6 @@ return [
         'time'                  => 'Время',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
+        'passport'              => 'Паспорт'
     ],
 ];
