@@ -27,6 +27,7 @@ class UserResource extends JsonResource
             'phone_format' => $this->info->phoneFormat,
             'additional_phone' => $this->info->shortAdditionalPhone,
             'additional_phone_format' => $this->info->additionalPhoneFormat,
+            'type_passport' => $this->info->type_passport,
             'passport' => $this->info->passport,
             'inn_code' => $this->info->inn_code,
             'sex' => $this->info->sex,
