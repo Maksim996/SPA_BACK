@@ -14,14 +14,18 @@ class AuthController extends Controller
 {
     /**
      * Login user
-     * @group Authentication
      *
-     * @bodyParam email email required
-     * @bodyParam password string required
      * @response {
      *   "token": "token"
      * }
-     * @param Request $request
+     * @response status=401 scenario=unauthenticated {
+     *   "message": "These credentials do not match our records.",
+     *   "errors": {
+     *     "email": ["The email is incorrect."],
+     *     "password": ["The password is incorrect."]
+     *   }
+     * }
+     * @param LoginPersonnelRequest $request
      * @return [string] token
      */
     public function login(LoginPersonnelRequest $request) {
@@ -69,7 +73,7 @@ class AuthController extends Controller
 
     /**
      * Logout user (Revoke the token)
-     * @group Authentication
+     *
      * @response {
      * "message": "Successfully logged out"
      * }
@@ -79,7 +83,7 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
         return response()->json([
-            'message' => 'Successfully logged out'
+            'message' => __('Successfully logged out')
         ]);
     }
 }
