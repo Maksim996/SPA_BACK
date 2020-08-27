@@ -28,7 +28,7 @@ class Passport implements Rule
         $length = strlen($value);
         if ($this->type == 0) {
             if ($length == 8) {
-                $pattern = "/[^A-Z]{0,2}\d{2,6}/";
+                $pattern = "/[^Є-ЯҐ]{0,2}\d{2,6}/";
                 return preg_match($pattern, $value);
             }
             return false;
