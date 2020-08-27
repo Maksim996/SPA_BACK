@@ -56,6 +56,14 @@ class AuthController extends Controller
             return response()->json([
                 'token' => $token->accessToken,
             ]);
+        } else {
+            return response()->json([
+                'message' => trans('auth.failed'),
+                'errors' => [
+                    'email' => [trans('auth.email')],
+                    'password' => [trans('auth.password')],
+                ],
+            ], 401);
         }
     }
 
