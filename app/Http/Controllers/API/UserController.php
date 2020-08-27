@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\{User, Role, Info};
 use Illuminate\Http\Request;
 use App\Http\Requests\{ UpdateDirector, UpdatePassword };
-use Illuminate\Support\Facades\{Validator, Auth, Hash};
+use Illuminate\Support\Facades\{Validator, Auth, Hash, Mail};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Carbon\Carbon;
+use App\Mail\Password;
 use App\Http\Resources\{ UserResource, UsersResource };
 
 /**
@@ -72,6 +72,8 @@ class UserController extends Controller
             'sex' => $request->sex,
         ]);
         $user->info()->save($info);
+
+        Mail::to($user)->send(new Password($user));
 
         return response()->json(['message' => __('User added successfully')]);
     }
