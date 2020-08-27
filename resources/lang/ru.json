@@ -60,5 +60,6 @@
   "User updated successfully": "Пользователь успешно обновлен",
   "Status updated": "Статус обновлен",
   "Password updated": "Пароль обновлен",
-  "Password Not match": "Пароль не совпадает с текущим"
+  "Password Not match": "Пароль не совпадает с текущим",
+  "Successfully logged out": "Вы вышли из системы"
 }
