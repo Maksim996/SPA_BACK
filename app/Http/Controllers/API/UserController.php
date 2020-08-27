@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\{Validator, Auth, Hash, Mail};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Mail\Password;
 use App\Http\Resources\{ UserResource, UsersResource };
+use Illuminate\Support\Str;
 
 /**
  * @group User management
@@ -50,10 +51,11 @@ class UserController extends Controller
 
         $userRole = Role::find(User::DIRECTOR);
 
-        // ! Send password on email (now static password)
+        $randomString = Str::random(8); // bytes not char
+
         $user = $userRole->user()->create([
             'email' => $request->email,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make($randomString),
             'created_at' => now(),
         ]);
 
@@ -73,7 +75,7 @@ class UserController extends Controller
         ]);
         $user->info()->save($info);
 
-        Mail::to($user)->send(new Password($user));
+        Mail::to($user)->send(new Password($user, $randomString));
 
         return response()->json(['message' => __('User added successfully')]);
     }

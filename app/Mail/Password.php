@@ -12,19 +12,21 @@ class Password extends Mailable
     use Queueable, SerializesModels;
 
       /**
-     * The order instance.
+     * The user instance.
      *
-     * @var Order
+     * @var User
      */
     public $user;
+    public $randomString;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $randomString)
     {
         $this->data = $user;
+        $this->randomString = $randomString;
     }
 
     /**
@@ -37,7 +39,7 @@ class Password extends Mailable
         return $this->view('emails.password')->with([
             'first_name' => $this->data->info->first_name,
             'second_name' => $this->data->info->second_name,
-            'password' => $this->data->password,
+            'password' => $this->randomString,
         ]);
     }
 }
