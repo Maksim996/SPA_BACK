@@ -250,4 +250,32 @@ class UserController extends Controller
 
         return response()->json(['message' => __('Password Not match')]);
     }
+
+    /**
+     * Send generated password to email
+     *
+     * @response status=200 {
+     *
+     * }
+     * @param Request $request
+     * @param int $id
+     * @return Illuminate\Http\Response
+     */
+    public function sendEmail(Request $request, $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+        } catch(ModelNotFoundException $e) {
+            abort(404, __('User Not found'));
+        }
+
+        $randomString = Str::random(8);
+        $user->password = Hash::make($randomString);
+        $user->save();
+        Mail::to($user)->send(new Password($user, $randomString));
+
+        return response()->json([
+            'message' => trans('Message sent')
+        ], 200);
+    }
 }

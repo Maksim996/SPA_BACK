@@ -62,5 +62,6 @@
   "Status updated": "Статус оновлено",
   "Password updated": "Пароль оновлено",
   "Password Not match": "Пароль не збігається з дійсним",
-  "Successfully logged out": "Ви вийшли з системи"
+  "Successfully logged out": "Ви вийшли з системи",
+  "Message sent": "Повідомлення відправлено"
 }

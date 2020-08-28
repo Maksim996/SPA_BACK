@@ -25,7 +25,7 @@ class Password extends Mailable
      */
     public function __construct($user, $randomString)
     {
-        $this->data = $user;
+        $this->user = $user;
         $this->randomString = $randomString;
     }
 
@@ -37,8 +37,9 @@ class Password extends Mailable
     public function build()
     {
         return $this->view('emails.password')->with([
-            'first_name' => $this->data->info->first_name,
-            'second_name' => $this->data->info->second_name,
+            'first_name' => $this->user->info->first_name,
+            'second_name' => $this->user->info->second_name,
+            'login' => $this->user->email,
             'password' => $this->randomString,
         ]);
     }
