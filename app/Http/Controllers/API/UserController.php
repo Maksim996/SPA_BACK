@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\{Validator, Auth, Hash, Mail};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Mail\Password;
 use App\Http\Resources\{ UserResource, UsersResource };
-use Illuminate\Support\Str;
+use Illuminate\Support\{Str, Arr};
 
 /**
  * @group User management
@@ -36,43 +36,31 @@ class UserController extends Controller
      * Create User with role Director
      * @group User management
      *
-     * @response {
-     *   "message": "User added successfully."
-     * }
+     * @response { "message": "User added successfully." }
      *
      * @param \Illuminate\Http\Request   $request
      * @return \Illuminate\Http\Response
      */
     public function createDirector(UpdateDirector $request)
     {
-        $validated = $request->validated();
-        // ! Why it doesn't work. Redirect after fails
+        // ! Why validation doesn't work. Redirect after fails
         // Need sent header Accept: application/json
-
+        $validated = $request->validated();
         $userRole = Role::find(User::DIRECTOR);
 
         $randomString = Str::random(8); // bytes not char
 
         $user = $userRole->user()->create([
-            'email' => $request->email,
+            'email' => $validated['email'],
             'password' => Hash::make($randomString),
             'created_at' => now(),
         ]);
 
         $user->save();
 
-        $info = Info::create([
-            'first_name' => $request->first_name,
-            'second_name' => $request->second_name,
-            'patronymic' => $request->patronymic,
-            'birthday' => $request->birthday,
-            'phone' => $request->phone,
-            'additional_phone' => $request->additional_phone,
-            'type_passport' => $request->type_passport,
-            'passport' => $request->passport,
-            'inn_code' => $request->inn_code,
-            'sex' => $request->sex,
-        ]);
+        $dataInfo = Arr::except($validated, ['email']);
+        $info = Info::create($dataInfo);
+
         $user->info()->save($info);
 
         Mail::to($user)->send(new Password($user, $randomString));
@@ -105,7 +93,7 @@ class UserController extends Controller
      * @urlParam id required The ID of the User
      * @response { "message": "User updated successfully" }
      * @response status=404 scenario="user not found" {
-     *   "message" => "User not found."
+     *   "message": "User not found."
      * }
      * @param App\Http\Requests\UpdateDirector $request
      * @param  \App\User  $id
@@ -113,35 +101,19 @@ class UserController extends Controller
      */
     public function updateDirector(UpdateDirector $request, $id)
     {
-        $validated = $request->validated();
         try {
             $model = User::findOrFail($id);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => __('User Not found')], 404);
         }
 
-        //$birthday = Carbon::CreateFromFormat('d.m.Y', $request->birthday)->format('Y-m-d');
+        $validated = $request->validated();
 
-        $model->info()->update([
-            'first_name' => $request->first_name,
-            'second_name' => $request->second_name,
-            'patronymic' => $request->patronymic,
-            'birthday' => $request->birthday,
-            'sex' => $request->sex,
-            'phone' => $request->phone,
-            'additional_phone' => $request->additional_phone,
-            'type_passport' => $request->type_passport,
-            'passport' => $request->passport,
-            'inn_code' => $request->inn_code,
-            'background_url' => $request->background_url,
-            // 'image' => $request->image ? $request->image : $model->info->image, // ?
-        ]);
+        $info = Arr::except($validated, ['email']);
+        $model->info()->update($info);
         $model->save();
 
-        $model->update([
-            'email' => $request->email,
-        ]);
-
+        $model->update(['email' => $validated['email']]);
         $model->save();
 
         return response()->json(['message' => __('User updated successfully')]);
@@ -176,11 +148,9 @@ class UserController extends Controller
      * @group User management
      * @urlParam id required The ID of the User
      *
-     * @response {
-     *   "message": "Status updated."
-     * }
+     * @response { "message": "Status updated" }
      * @response status=404 scenario="user not found" {
-     *   "message" => "User not found."
+     *   "message": "User not found."
      * }
      * @param \App\User $id
      * @return \Illuminate\Http\Resources
@@ -188,7 +158,7 @@ class UserController extends Controller
     public function active(int $id)
     {
         if (Auth::id() === $id) {
-            abort(403, 'Forbidden');
+            abort(403, __('Forbidden'));
         }
         try {
             $user = User::findOrFail($id);
