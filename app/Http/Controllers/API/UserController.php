@@ -254,8 +254,11 @@ class UserController extends Controller
     /**
      * Send generated password to email
      *
-     * @response status=200 {
-     *
+     * @response {
+     *  "message": "Message sent"
+     * }
+     * @response status=404 scenario="user not found" {
+     *  "message": "user not found"
      * }
      * @param Request $request
      * @param int $id
