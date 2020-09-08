@@ -36,6 +36,11 @@ Or run command with key `--force`: `php artisan scribe:generate --force`
 
 Personal access client not found. Please create one. - php artisan passport:client --personal
 
+## Email & Local Development
+
+Set up your application environment(file .env) `MAIL_MAILER=log`
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
