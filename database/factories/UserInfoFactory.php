@@ -17,11 +17,11 @@ $factory->define(\App\Info::class, function (Faker $faker) {
         'second_name' => $faker->lastName,
         'patronymic' => $faker->firstName($gender = 'male'|'female'),
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'phone' => $faker->unique()->numerify('380#########'),
+        'phone' => $faker->unique()->numerify('38050#######'),// 9 numbers
         'additional_phone' => null,
         'type_passport' => $type_passport,
         'passport' =>  $passport,
-        'inn_code' => $faker->unique()->numerify('#########'),
+        'inn_code' => $faker->unique()->numerify('##########'),//10 numbers
         'sex' => $faker->numberBetween(0, 1),
         'image' => $faker->imageUrl(),
         'description' => $faker->text(200),
