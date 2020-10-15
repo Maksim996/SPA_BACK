@@ -70,10 +70,10 @@ class Info extends Model
      */
     public function getShortPhoneAttribute() :string
     {
-        return substr($this->phone, 3);
+        return substr($this->phone, 2);
     }
     /**
-     * Get phone in format +38(0##) ### ## ##
+     * Get phone in format +38(###) ### ## ##
      *
      * @return string
      */
