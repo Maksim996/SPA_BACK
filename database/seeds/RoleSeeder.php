@@ -11,31 +11,16 @@ class RoleSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        DB::table('roles')->insert([
-            // 'user_id' => 1,
-            'role' => 'root',
-            'created_at' => now()
-        ]);
-        DB::table('roles')->insert([
-            'role' => 'director',
-            'created_at' => now()
-        ]);
-        DB::table('roles')->insert([
-            'role' => 'supervisor',
-            'created_at' => now()
-        ]);
-        DB::table('roles')->insert([
-            'role' => 'administrator',
-            'created_at' => now()
-        ]);
-        DB::table('roles')->insert([
-            'role' => 'doctor',
-            'created_at' => now()
-        ]);
-        DB::table('roles')->insert([
-            'role' => 'medical_representative',
-            'created_at' => now()
-        ]);
+    {;
+        $roles = [];
+
+        foreach (array_keys(config('constants.ROLES')) as $role) {
+            $roles[] = [
+                'role' => $role,
+                'created_at' => now()
+            ];
+        }
+
+        DB::table('roles')->insert($roles);
     }
 }
