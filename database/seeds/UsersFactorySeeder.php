@@ -11,10 +11,11 @@ class UsersFactorySeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\User::class, 20)
-            ->create()
-            ->each(function ($user) {
-                $user->info()->save(factory(App\Info::class)->make());
-            });
+        foreach (config('constants.ROLES') as $role)
+            $users = factory(App\User::class, 5)
+                ->create(['role_id' => $role])
+                ->each(function ($user) {
+                    $user->info()->save(factory(App\Info::class)->make());
+                });
     }
 }
