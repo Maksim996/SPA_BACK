@@ -25,7 +25,7 @@ class Passport implements Rule
      */
     public function passes($attribute, $value)
     {
-        $length = strlen($value);
+        $length = mb_strlen($value);
         if ($this->type == 0) {
             if ($length == 8) {
                 $pattern = "/[^Є-ЯҐ]{0,2}\d{2,6}/";
