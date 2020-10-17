@@ -22,6 +22,7 @@ class UserInfoSeeder extends Seeder
             'passport' => '123456789',
             'inn_code' => '0123456789',
             'sex' => 0,
+            'image' => 'https://randomuser.me/api/portraits/men/23.jpg'
             //'created_at' => now(),
         ]);
     }

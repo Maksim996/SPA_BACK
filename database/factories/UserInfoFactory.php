@@ -11,6 +11,8 @@ $factory->define(\App\Info::class, function (Faker $faker) {
     $passport = $type_passport === 1
         ? $faker->unique()->randomNumber(9, true)
         : 'ВМ' . $faker->unique()->randomNumber(6, true);
+    $sex = $faker->numberBetween(0, 1);
+    $imageType = $sex === 0 ? 'women': 'men';
 
     return [
         'first_name' => $faker->firstName($gender = 'male'|'female'),
@@ -22,8 +24,8 @@ $factory->define(\App\Info::class, function (Faker $faker) {
         'type_passport' => $type_passport,
         'passport' =>  $passport,
         'inn_code' => $faker->unique()->numerify('##########'),//10 numbers
-        'sex' => $faker->numberBetween(0, 1),
-        'image' => $faker->imageUrl(),
+        'sex' => $sex,
+        'image' => 'https://randomuser.me/api/portraits/'.$imageType.'/'.$faker->randomNumber(2) .'.jpg',
         'description' => $faker->text(200),
         'background_url' => null,
     ];
