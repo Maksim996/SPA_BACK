@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function indexDirector()
     {
-        return UsersResource::collection(User::isDirector()->get());
+        return UsersResource::collection(User::isDirector()->paginate(config('constants.PAGINATION')));
     }
 
     /**
