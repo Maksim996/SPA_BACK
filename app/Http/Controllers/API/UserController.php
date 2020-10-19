@@ -200,6 +200,9 @@ class UserController extends Controller
      * @response {
      *   "message": "Password updated."
      * }
+     * @response status=422 scenario="Password Not match" {
+     *   "message": "Password Not match"
+     * }
      * @param UpdatePassword $request
      * @return Illuminate\Http\Response
      */
@@ -218,7 +221,7 @@ class UserController extends Controller
             return response()->json(['message' => __('Password updated')]);
         }
 
-        return response()->json(['message' => __('Password Not match')]);
+        return response()->json(['message' => __('Password Not match'), 422]);
     }
 
     /**
