@@ -220,8 +220,7 @@ class UserController extends Controller
             ])->save();
             return response()->json(['message' => __('Password updated')]);
         }
-
-        return response()->json(['message' => __('Password Not match'), 422]);
+        return response()->json(['message' => __('Password Not match')], 422);
     }
 
     /**
