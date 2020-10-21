@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\API\UserController;
+// use App\Http\Controllers\API\{ UserController };
 
 /*
 |--------------------------------------------------------------------------
@@ -24,28 +27,29 @@ Route::fallback(function () {
     return response()->json(['message' => __('Service Unavailable')], 404);
 });
 
-Route::post('login', 'AuthController@login');
+Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:api', 'role'])->group(function() {
-    Route::get('user', 'API\UserController@getUser'); // !scope
-    Route::get('logout', 'AuthController@logout'); // !scope
+    Route::get('user', [UserController::class, 'getUser']); // !scope
+    Route::get('logout', [AuthController::class, 'logout']); // !scope
 
-    Route::patch('change-password', 'API\UserController@changePassword')
+    Route::patch('change-password', [UserController::class, 'changePassword'])
         ->name('change.password')
         ->middleware('scope:change-password');
 
     Route::group(['prefix' => 'director', 'middleware' => ['scope:root']],
         function() {
-            Route::get('/', 'API\UserController@indexDirector');
-            Route::post('create', 'API\UserController@createDirector');
-            Route::get('/{id}', 'API\UserController@getDirector');
-            Route::put('/{id}', 'API\UserController@updateDirector');
-            Route::patch('active/{id}', 'API\UserController@active')
+            Route::get('/', [UserController::class, 'indexDirector']);
+            Route::post('create', [UserController::class, 'createDirector']);
+            Route::get('/{id}', [UserController::class, 'getDirector']);
+            Route::put('/{id}', [UserController::class, 'updateDirector']);
+            Route::patch('active/{id}', [UserController::class, 'active'])
                 ->where('id','[0-9]+');
     });
 
     Route::group(['middleware' => ['scope:root,director,supervisor,administrator']], function() {
-        Route::patch('send-email/{id}', 'API\UserController@sendEmail')->name('send.email');
+        Route::patch('send-email/{id}', [UserController::class, 'sendEmail'])
+            ->name('send.email');
     });
 
 });
