@@ -17,7 +17,7 @@ class CreateStreetsTable extends Migration
             $table->id();
             $table->string('street_name');
             $table->string('building_number', 45);
-            $table->foreignId('city_id')->after('id')->constrained('cities');
+            $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateRegionsTable extends Migration
             $table->id();
             $table->string('region_name', 100);
             $table->timestamps();
-            $table->foreignId('area_id')->after('id')->constrained();
+            $table->foreignId('area_id')->constrained('areas')->after('id');
         });
     }
 
@@ -28,6 +28,10 @@ class CreateRegionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('regions');
+        // Schema::dropIfExists('regions');
+        Schema::table('regions', function (Blueprint $table) {
+            $table->dropIfExists('regions');
+            $table->dropForeign(['area_id',]);
+        });
     }
 }
