@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' =>  ['http://localhost:8081', 'http://192.168.1.8:8081'],
+    'allowed_origins' =>  explode(',', env('ALLOWED_ORIGINS')),
 
     'allowed_origins_patterns' => [],
 
