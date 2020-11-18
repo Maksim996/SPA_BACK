@@ -3,8 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\API\UserController;
-// use App\Http\Controllers\API\{ UserController };
+use App\Http\Controllers\API\ {
+    UserController,
+    AreaController,
+    RegionController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,12 @@ Route::fallback(function () {
 });
 
 Route::post('login', [AuthController::class, 'login']);
+
+Route::get('/areas', [AreaController::class, 'index']);
+Route::get('/regions', [RegionController::class, 'index']);
+Route::get('/regions/{id}', [RegionController::class, 'show']);
+Route::resource('cities', API\CityController::class);
+Route::resource('streets', API\StreetController::class);
 
 Route::middleware(['auth:api', 'role'])->group(function() {
     Route::get('user', [UserController::class, 'getUser']); // !scope
