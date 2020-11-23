@@ -33,6 +33,7 @@ Route::fallback(function () {
 Route::post('login', [AuthController::class, 'login']);
 
 Route::get('/areas', [AreaController::class, 'index']);
+
 Route::get('/regions', [RegionController::class, 'index']);
 Route::get('/regions/{id}', [RegionController::class, 'show']);
 Route::resource('cities', API\CityController::class);
@@ -42,6 +43,10 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     Route::get('user', [UserController::class, 'getUser']); // !scope
     Route::get('logout', [AuthController::class, 'logout']); // !scope
 
+    Route::group(['middleware' => ['scope:root']], function() {
+        Route::post('/areas/store', [AreaController::class, 'store']);
+        Route::post('/regions/store', [RegionController::class, 'store']);
+    });
     Route::patch('change-password', [UserController::class, 'changePassword'])
         ->name('change.password')
         ->middleware('scope:change-password');
