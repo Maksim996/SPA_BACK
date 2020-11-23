@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Address\StoreRegion;
 use App\Region;
 
 class RegionController extends Controller
@@ -17,4 +18,15 @@ class RegionController extends Controller
     {
         return Region::findOrFail($id);
     }
+
+    /**
+     * Store a newly created region in storage.
+     */
+    public function store(StoreRegion $request)
+    {
+        $validated = $request->validated();
+
+
+    }
+
 }
