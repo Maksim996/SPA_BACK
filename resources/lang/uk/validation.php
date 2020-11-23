@@ -185,6 +185,8 @@ return [
         'time'                  => 'Час',
         'available'             => 'Доступно',
         'size'                  => 'Розмір',
-        'passport'              => 'Паспорт'
+        'passport'              => 'Паспорт',
+        'area_name'             => 'Область',
+        'region_name'           => 'Район',
     ],
 ];
