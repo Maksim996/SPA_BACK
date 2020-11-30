@@ -229,7 +229,7 @@ return [
 
     ],
 
-    'cors' => env('CORS_HOST', 'http://localhost:8080'),
+    'cors_host' => env('CORS_HOST', 'http://localhost:8080'),
     'cors_ip' => env('CORS_IP', '*'),
 
 ];
