@@ -10,5 +10,5 @@ return [
         'doctor' => 5,
         'medical_representative' => 6,
     ],
-    'PAGINATION' => 2,
+    'PAGINATION' => env('PAGINATION', 10),
 ];
