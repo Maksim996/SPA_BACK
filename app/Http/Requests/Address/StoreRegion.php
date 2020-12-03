@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Address;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRegion extends FormRequest
 {
@@ -24,8 +25,13 @@ class StoreRegion extends FormRequest
     public function rules()
     {
         return [
-            'area_id' => 'required|integer|exist:App\Area,id',
-            'region_name' => 'required|string|max:100|unique:App\Region,region_name'
+            'area_id' => 'required|integer|exists:App\Area,id',
+            'region_name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('regions')->where('area_id', $this->area_id)
+            ],
         ];
     }
 }
