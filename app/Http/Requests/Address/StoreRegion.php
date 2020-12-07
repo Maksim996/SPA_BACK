@@ -30,7 +30,7 @@ class StoreRegion extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('regions')->where('area_id', $this->area_id)
+                Rule::unique('App\Region')->where('area_id', $this->area_id)
             ],
         ];
     }
