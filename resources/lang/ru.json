@@ -62,5 +62,8 @@
   "Password updated": "Пароль обновлен",
   "Password Not match": "Пароль не совпадает с текущим",
   "Successfully logged out": "Вы вышли из системы",
-  "Message sent": "Cообщение отправлено"
+  "Message sent": "Cообщение отправлено",
+  "Area added successfully": "Область создана",
+  "Region added successfully": "Регин создан",
+  "City added successfully": "Город создан"
 }
