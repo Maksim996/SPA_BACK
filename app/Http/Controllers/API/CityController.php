@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\City;
+use App\{ City, Region };
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Address\StoreCity;
 
 class CityController extends Controller
 {
@@ -31,12 +32,19 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Address\StoreCity  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCity $request)
     {
-        //
+        $validated = $request->validated();
+
+        list ('region_id'=> $id, 'city_name' => $city) = $validated;
+
+        $region = Region::findOrFail($id);
+        $region->cities()->create(['city_name' => $city]);
+
+        return response()->json(['message' => __('City added successfully')]);
     }
 
     /**

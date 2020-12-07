@@ -34,7 +34,7 @@ class AreaController extends Controller
      * Store a newly area.
      *
      * @param StoreArea $request
-     * @return Response
+     * @return \illuminate\Http\Response
      */
     public function store(StoreArea $request) {
         $validated = $request->validated();
@@ -42,5 +42,6 @@ class AreaController extends Controller
         $area = new Area;
         $area->area_name = $validated['area_name'];
         $area->save();
+        return response()->json(['message' => 'Area added successfully']);
     }
 }
