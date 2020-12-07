@@ -10,6 +10,13 @@ class City extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var [array]
+     */
+    protected $guarded = [];
+
+    /**
      * Get the Streets for City.
      */
     public function streets()
