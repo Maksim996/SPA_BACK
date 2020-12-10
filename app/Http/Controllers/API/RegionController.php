@@ -12,8 +12,8 @@ class RegionController extends Controller
     public function index()
     {
         return Region::select('id', 'area_id', 'region_name')
+            ->orderBy('area_id')
             ->orderBy('region_name')
-            // ->groupBy('id', 'area_id', 'region_name')
             ->get();
     }
 
