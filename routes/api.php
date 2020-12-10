@@ -4,9 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ {
-    UserController,
     AreaController,
+    CityController,
     RegionController,
+    UserController,
 };
 
 /*
@@ -32,25 +33,32 @@ Route::fallback(function () {
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::get('/areas', [AreaController::class, 'index']);
-
-Route::get('/regions', [RegionController::class, 'index']);
-Route::get('/regions/{id}', [RegionController::class, 'show']);
-Route::resource('cities', API\CityController::class);
-Route::resource('streets', API\StreetController::class);
-
 Route::middleware(['auth:api', 'role'])->group(function() {
+
+    // Address
+    Route::get('/areas', [AreaController::class, 'index'])->name('areas.index');
+    Route::get('/regions', [RegionController::class, 'index'])->name('regions.index');
+    Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
+    Route::resource('cities', API\CityController::class)->except([
+        'store', 'create', 'destroy']);
+    Route::resource('streets', API\StreetController::class);
+    // end address
+
     Route::get('user', [UserController::class, 'getUser']); // !scope
     Route::get('logout', [AuthController::class, 'logout']); // !scope
-
-    Route::group(['middleware' => ['scope:root']], function() {
-        Route::post('/areas/store', [AreaController::class, 'store']);
-        Route::post('/regions/store', [RegionController::class, 'store']);
+    // Director
+    Route::group(['middleware' => ['scope:director']], function() {
+        Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
+        Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
+        Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
     });
+    // end Director
+
     Route::patch('change-password', [UserController::class, 'changePassword'])
-        ->name('change.password')
+        ->name('password.change')
         ->middleware('scope:change-password');
 
+    // Root
     Route::group(['prefix' => 'director', 'middleware' => ['scope:root']],
         function() {
             Route::get('/', [UserController::class, 'indexDirector']);
@@ -60,6 +68,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
             Route::patch('active/{id}', [UserController::class, 'active'])
                 ->where('id','[0-9]+');
     });
+    // end Root
 
     Route::group(['middleware' => ['scope:root,director,supervisor,administrator']], function() {
         Route::patch('send-email/{id}', [UserController::class, 'sendEmail'])
