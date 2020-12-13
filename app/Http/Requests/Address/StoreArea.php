@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Address;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class StoreArea extends FormRequest
 {
     /**
@@ -24,7 +24,13 @@ class StoreArea extends FormRequest
     public function rules()
     {
         return [
-            'area_name' => 'required|string|unique:areas,area_name|max:100'
+            'area_name' => [
+                'required',
+                'string',
+                'unique:areas,area_name',
+                'max:100',
+                Rule::unique('App\Area')->ignore($this->id)
+            ]
         ];
     }
 }

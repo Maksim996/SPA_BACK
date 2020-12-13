@@ -20,13 +20,7 @@ use App\Http\Controllers\API\ {
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// Route::post('/register', function (Request $request) {
-//    return response()->json($request->all());
-// });
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 Route::fallback(function () {
     return response()->json(['message' => __('Service Unavailable')], 404);
 });
@@ -49,6 +43,9 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     // Director
     Route::group(['middleware' => ['scope:director']], function() {
         Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
+        Route::match(
+            ['put', 'patch'], '/areas/{id}', [AreaController::class, 'update']
+        )->name('areas.update');
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
     });
@@ -65,8 +62,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
             Route::post('create', [UserController::class, 'createDirector']);
             Route::get('/{id}', [UserController::class, 'getDirector']);
             Route::put('/{id}', [UserController::class, 'updateDirector']);
-            Route::patch('active/{id}', [UserController::class, 'active'])
-                ->where('id','[0-9]+');
+            Route::patch('active/{id}', [UserController::class, 'active']);
     });
     // end Root
 

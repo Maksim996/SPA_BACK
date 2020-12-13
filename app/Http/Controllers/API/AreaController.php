@@ -44,4 +44,19 @@ class AreaController extends Controller
         $area->save();
         return response()->json(['message' => 'Area added successfully']);
     }
+
+    /**
+     * Update the area by id
+     * @group Address
+     * @param StoreArea $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+        // $validated = $request->validated();
+        $uri = $request->path();
+        $ipAddress = $request->ip();
+        dd($uri, $id, $request->all());
+        return response()->json(['message' => 'Area updated successfully']);
+    }
 }
