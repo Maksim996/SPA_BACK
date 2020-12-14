@@ -14,13 +14,16 @@ class Area extends Model
      *
      * @var array
      */
-    protected $guarded = [];
+    // protected $guarded = [];
+    protected $fillable = [
+        'area'
+    ];
 
     /**
      * Get the regions for the Area.
      */
     public function regions()
     {
-        return $this->hasMany('\App\Region')->orderBy('region_name', 'asc');
+        return $this->hasMany('\App\Region')->orderBy('region', 'asc');
     }
 }

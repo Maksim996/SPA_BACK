@@ -25,9 +25,9 @@ class AreaSeeder extends Seeder
             'Хмельницька', 'Черкаська', 'Чернівецька',
             'Чернігівська'
         );
-        foreach ($areas as $areaName) {
+        foreach ($areas as $area) {
             DB::table('areas')->insert([
-                'area_name' => $areaName,
+                'area' => $area,
                 'created_at' => now(),
             ]);
         }

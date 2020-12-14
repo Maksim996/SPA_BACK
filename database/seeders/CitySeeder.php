@@ -16,37 +16,37 @@ class CitySeeder extends Seeder
     {
         DB::table('cities')->insert([
             'region_id' => 16,
-            'city_name' => "м. Суми",
+            'city' => "Суми",
             'created_at' => now(),
         ]);
         DB::table('cities')->insert([
             'region_id' => 1,
-            'city_name' => "м. Охтирка",
+            'city' => "Охтирка",
             'created_at' => now(),
         ]);
         DB::table('cities')->insert([
             'region_id' => 6,
-            'city_name' => "м. Глухів",
+            'city' => "Глухів",
             'created_at' => now(),
         ]);
         DB::table('cities')->insert([
             'region_id' => 7,
-            'city_name' => "м. Конотоп",
+            'city' => "Конотоп",
             'created_at' => now(),
         ]);
         DB::table('cities')->insert([
             'region_id' => 10,
-            'city_name' => "м. Лебедин",
+            'city' => "Лебедин",
             'created_at' => now(),
         ]);
         DB::table('cities')->insert([
             'region_id' => 14,
-            'city_name' => "м. Ромни",
+            'city' => "Ромни",
             'created_at' => now(),
         ]);
             DB::table('cities')->insert([
             'region_id' => 18,
-            'city_name' => "м. Шостка",
+            'city' => "Шостка",
             'created_at' => now(),
         ]);
 

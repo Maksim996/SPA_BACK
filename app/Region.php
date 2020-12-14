@@ -21,6 +21,6 @@ class Region extends Model
      */
     public function cities()
     {
-        return $this->hasMany('\App\City')->orderBy('city_name', 'asc');
+        return $this->hasMany('\App\City')->orderBy('city', 'asc');
     }
 }

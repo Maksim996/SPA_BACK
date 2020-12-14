@@ -24,10 +24,10 @@ class RegionSeeder extends Seeder
             'Середино-Будський', 'Сумський', 'Тростянецький',
             'Шосткинський', 'Ямпільський'
         ];
-        foreach($sumyArea as $regionName) {
+        foreach($sumyArea as $region) {
             DB::table('regions')->insert([
                 'area_id' => $sumyAreaId,
-                'region_name' => $regionName,
+                'region' => $region,
                 'created_at' => now(),
             ]);
         }
