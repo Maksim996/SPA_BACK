@@ -31,6 +31,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
 
     // Address
     Route::get('/areas', [AreaController::class, 'index'])->name('areas.index');
+    Route::get('/areas/{id}', [AreaController::class, 'show'])->name('area.show');
     Route::get('/regions', [RegionController::class, 'index'])->name('regions.index');
     Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
     Route::resource('cities', API\CityController::class)->except([
@@ -43,10 +44,9 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     // Director
     Route::group(['middleware' => ['scope:director']], function() {
         Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
-        Route::match(
-            ['put', 'patch'], '/areas/{id}', [AreaController::class, 'update']
-        )->name('areas.update');
+        Route::put('/areas/{id}', [AreaController::class, 'update'])->name('areas.update');
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
+        Route::put('/regions/{id}', [RegionController::class, 'update'])->name('regions.update');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
     });
     // end Director
