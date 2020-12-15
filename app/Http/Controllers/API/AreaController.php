@@ -16,7 +16,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        return Area::select('id', 'area_name')->orderBy('area_name')->get();
+        return Area::select('id', 'area')->orderBy('area')->get();
     }
 
     /**
@@ -40,23 +40,25 @@ class AreaController extends Controller
         $validated = $request->validated();
 
         $area = new Area;
-        $area->area_name = $validated['area_name'];
+        $area->area = $validated['area'];
         $area->save();
-        return response()->json(['message' => 'Area added successfully']);
+        return response()->json(['message' => 'Area added successfully'], 201);
     }
 
     /**
-     * Update the area by id
-     * @group Address
-     * @param StoreArea $request
-     * @param int $id
+     * Update the given user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        // $validated = $request->validated();
-        $uri = $request->path();
-        $ipAddress = $request->ip();
-        dd($uri, $id, $request->all());
-        return response()->json(['message' => 'Area updated successfully']);
+    public function update(StoreArea $request, $id)
+    {
+        $validated = $request->validated();
+        $area = Area::find($id);
+        $area->area = $validated['area'];
+        $area->save();
+        return response()->json(['message' => "Updated"], 200);
     }
+
 }

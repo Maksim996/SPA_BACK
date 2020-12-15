@@ -11,9 +11,9 @@ class RegionController extends Controller
 {
     public function index()
     {
-        return Region::select('id', 'area_id', 'region_name')
+        return Region::select('id', 'area_id', 'region')
             ->orderBy('area_id')
-            ->orderBy('region_name')
+            ->orderBy('region')
             ->get();
     }
 
@@ -21,7 +21,6 @@ class RegionController extends Controller
     {
         return Region::findOrFail($id);
     }
-
     /**
      * Store a newly created region in storage.
      * @param StoreArea $request
@@ -33,11 +32,23 @@ class RegionController extends Controller
         $validated = $request->validated();
         $area = Area::find($validated['area_id']);
         $area->regions()->create([
-            'region_name' => $validated['region_name']
+            'region' => $validated['region']
         ]);
 
-        return response()->json(['message' => __('Region added successfully')]);
+        return response()->json(['message' => __('Region added successfully')], 201);
 
+    }
+    /**
+     * Update the give region.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param integer $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        return response()->json(['message' => $request->region], 200);
     }
 
 }
