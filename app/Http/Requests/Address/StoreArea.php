@@ -24,10 +24,10 @@ class StoreArea extends FormRequest
     public function rules()
     {
         return [
-            'area_name' => [
+            'area' => [
                 'required',
                 'string',
-                'unique:areas,area_name',
+                'unique:areas,area',
                 'max:100',
                 Rule::unique('App\Area')->ignore($this->id)
             ]

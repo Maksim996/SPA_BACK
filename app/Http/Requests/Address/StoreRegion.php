@@ -26,7 +26,7 @@ class StoreRegion extends FormRequest
     {
         return [
             'area_id' => 'required|integer|exists:App\Area,id',
-            'region_name' => [
+            'region' => [
                 'required',
                 'string',
                 'max:100',

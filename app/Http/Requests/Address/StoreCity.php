@@ -26,7 +26,7 @@ class StoreCity extends FormRequest
     {
         return [
             'region_id' => 'required|integer|exists:App\Region,id',
-            'city_name' => [
+            'city' => [
                 'required',
                 'string',
                 'max:150',
