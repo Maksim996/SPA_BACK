@@ -50,10 +50,11 @@ class RegionController extends Controller
     {
         $validated = $request->validated();
 
-        $region = new Region([ $validated['regin'] ]);
-        $area = Area::find($validated['area_id']);
-        $area->region()->save($region);
+        $region = Region::find($id);
+        $region->region = $validated['region'];
 
+        $area = Area::find($validated['area_id']);
+        $area->regions()->save($region);
         return response()->json(['message' => __('Data updated successfully')], 200);
     }
 
