@@ -21,6 +21,7 @@ class RegionController extends Controller
     {
         return Region::findOrFail($id);
     }
+
     /**
      * Store a newly created region in storage.
      * @param StoreArea $request
@@ -41,14 +42,19 @@ class RegionController extends Controller
     /**
      * Update the give region.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param StoreRegion $request
      * @param integer $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRegion $request, $id)
     {
+        $validated = $request->validated();
 
-        return response()->json(['message' => $request->region], 200);
+        $region = new Region([ $validated['regin'] ]);
+        $area = Area::find($validated['area_id']);
+        $area->region()->save($region);
+
+        return response()->json(['message' => __('Data updated successfully')], 200);
     }
 
 }
