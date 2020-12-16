@@ -42,9 +42,9 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     // Director
     Route::group(['middleware' => ['scope:director']], function() {
         Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
-        Route::put('/areas/{id}', [AreaController::class, 'update'])->name('areas.update');
+        Route::put('/areas/{area}', [AreaController::class, 'update'])->name('areas.update');
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
-        Route::put('/regions/{id}', [RegionController::class, 'update'])->name('regions.update');
+        Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
         Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
     });

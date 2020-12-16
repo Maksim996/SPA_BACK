@@ -40,19 +40,15 @@ class RegionController extends Controller
 
     }
     /**
-     * Update the give region.
+     * Update the Region.
      *
      * @param StoreRegion $request
-     * @param integer $id
+     * @param \App\Region $region
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRegion $request, $id)
+    public function update(StoreRegion $request, Region $region)
     {
         $validated = $request->validated();
-
-        $region = Region::find($id);
-        $region->region = $validated['region'];
-
         $area = Area::find($validated['area_id']);
         $area->regions()->save($region);
         return response()->json(['message' => __('Data updated successfully')], 200);

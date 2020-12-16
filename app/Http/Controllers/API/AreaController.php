@@ -10,7 +10,7 @@ use App\Area; // !need move to dir Models;
 class AreaController extends Controller
 {
     /**
-     * Display a listing area ordered by a-z.
+     * Display a listing Areas ordered by a-z.
      *
      * @return \Illuminate\Http\Response
      */
@@ -46,16 +46,15 @@ class AreaController extends Controller
     }
 
     /**
-     * Update the given area.
+     * Update the Area.
      *
      * @param  StoreArea $request
-     * @param  integer $id
+     * @param  \App\Area $area
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreArea $request, $id)
+    public function update(StoreArea $request, Area $area)
     {
         $validated = $request->validated();
-        $area = Area::find($id);
         $area->area = $validated['area'];
         $area->save();
         return response()->json(['message' => __('Data updated successfully')], 200);

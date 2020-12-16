@@ -10,7 +10,7 @@ use App\Http\Requests\Address\StoreCity;
 class CityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Cities.
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +34,7 @@ class CityController extends Controller
         $region = Region::findOrFail($id);
         $region->cities()->create(['city' => $city]);
 
-        return response()->json(['message' => __('City added successfully')]);
+        return response()->json(['message' => __('City added successfully')], 201);
     }
 
     /**
