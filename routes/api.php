@@ -34,9 +34,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     Route::get('/areas/{id}', [AreaController::class, 'show'])->name('area.show');
     Route::get('/regions', [RegionController::class, 'index'])->name('regions.index');
     Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
-    Route::resource('cities', API\CityController::class)->except([
-        'store', 'create', 'destroy']);
-    Route::resource('streets', API\StreetController::class);
+    Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
     // end address
 
     Route::get('user', [UserController::class, 'getUser']); // !scope
@@ -48,6 +46,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
         Route::put('/regions/{id}', [RegionController::class, 'update'])->name('regions.update');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
+        Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
     });
     // end Director
 
