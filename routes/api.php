@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ {
     AreaController,
     CityController,
     RegionController,
+    AddressController,
     UserController,
 };
 
@@ -35,6 +36,7 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     Route::get('/regions', [RegionController::class, 'index'])->name('regions.index');
     Route::get('/regions/{id}', [RegionController::class, 'show'])->name('regions.show');
     Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
+    Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
     // end address
 
     Route::get('user', [UserController::class, 'getUser']); // !scope
