@@ -16,8 +16,6 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('city', 150);
-            $table->unique(['city', 'region_id']);
-            $table->foreignId('region_id')->constrained('regions')->after('id');
             $table->timestamps();
         });
     }

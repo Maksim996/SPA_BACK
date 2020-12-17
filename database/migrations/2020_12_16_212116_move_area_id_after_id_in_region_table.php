@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressesTable extends Migration
+class MoveAreaIdAfterIdInRegionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
-            $table->string('street');
-            $table->string('building', 45);
-            $table->timestamps();
+        Schema::table('regions', function (Blueprint $table) {
+            $table->unique(['area_id', 'region']);
+            $table->foreignId('area_id')->after('id')->constrained('areas');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::table('regions', function (Blueprint $table) {
+            $table->dropForeign(['area_id']);
+        });
     }
 }

@@ -17,8 +17,6 @@ class CreateRegionsTable extends Migration
             $table->id();
             $table->string('region', 100);
             $table->timestamps();
-            $table->unique(['area_id', 'region']);
-            $table->foreignId('area_id')->constrained('areas')->after('id');
         });
     }
 

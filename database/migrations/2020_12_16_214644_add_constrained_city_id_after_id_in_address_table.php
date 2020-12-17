@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressesTable extends Migration
+class AddConstrainedCityIdAfterIdInAddressTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
-            $table->string('street');
-            $table->string('building', 45);
-            $table->timestamps();
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->foreignId('city_id')->after('id')->constrained('cities');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->dropForeign('city_id');
+        });
     }
 }
