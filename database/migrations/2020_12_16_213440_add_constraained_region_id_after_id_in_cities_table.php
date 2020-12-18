@@ -15,7 +15,10 @@ class AddConstraainedRegionIdAfterIdInCitiesTable extends Migration
     {
         Schema::table('cities', function (Blueprint $table) {
             $table->unique(['city', 'region_id']);
-            $table->foreignId('region_id')->after('id')->constrained('regions');
+            $table->foreignId('region_id')
+                ->after('id')
+                ->constrained('regions')
+                ->onDelete('cascade');
         });
     }
 

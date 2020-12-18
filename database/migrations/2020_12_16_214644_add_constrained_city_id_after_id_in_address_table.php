@@ -14,7 +14,10 @@ class AddConstrainedCityIdAfterIdInAddressTable extends Migration
     public function up()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->foreignId('city_id')->after('id')->constrained('cities');
+            $table->foreignId('city_id')
+                ->after('id')
+                ->constrained('cities')
+                ->onDelete('cascade');
         });
     }
 

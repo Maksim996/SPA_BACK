@@ -15,7 +15,10 @@ class MoveAreaIdAfterIdInRegionTable extends Migration
     {
         Schema::table('regions', function (Blueprint $table) {
             $table->unique(['area_id', 'region']);
-            $table->foreignId('area_id')->after('id')->constrained('areas');
+            $table->foreignId('area_id')
+                ->after('id')
+                ->constrained('areas')
+                ->onDelete('cascade');
         });
     }
 
