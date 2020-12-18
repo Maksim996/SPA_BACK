@@ -64,8 +64,8 @@
   "Password Not match": "Пароль не збігається з дійсним",
   "Successfully logged out": "Ви вийшли з системи",
   "Message sent": "Повідомлення відправлено",
-  "Area added successfully": "Область додано",
-  "Data updated successfully": "Дані успішно оновлено",
-  "Region added successfully": "Регіон додано",
-  "City added successfully": "Місто додано"
+  "Data saved successfully": "Дані збережено",
+  "Data updated successfully": "Дані оновлено",
+  "Data deleted successfully": "Дані видалено"
+
 }
