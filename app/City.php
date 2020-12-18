@@ -17,10 +17,10 @@ class City extends Model
     protected $guarded = [];
 
     /**
-     * Get the Streets for City.
+     * Get the Addresses for City.
      */
-    public function streets()
+    public function addresses()
     {
-        return $this->hasMany('\App\Street');
+        return $this->hasMany('\App\Models\Address');
     }
 }
