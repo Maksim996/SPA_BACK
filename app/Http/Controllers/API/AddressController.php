@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Address\StoreAddress;
 use App\Models\Address;
+use App\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class AddressController extends Controller
 {
@@ -27,7 +29,11 @@ class AddressController extends Controller
      */
     public function store(StoreAddress $request)
     {
-        $validation = $request->validated();
+        $validated = $request->validated();
+        $city = City::findOrFail($validated['city_id']);
+        $city->addresses()->create($validated);
+
+        return response()->json(['message' => __('Data saved successfully')], 201);
     }
 
     /**
@@ -44,13 +50,14 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Address  $address
+     * @param  StoreAddress $request
+     * @param  \App\Models\Address $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(StoreAddress $request, Address $address)
     {
-        //
+        $address->update( $request->validated() );
+        return response()->json(['message' => __('Data updated successfully')], 200);
     }
 
     /**
@@ -61,6 +68,7 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+        return response()->json(['message' => __('Data deleted successfully')], 200);
     }
 }
