@@ -43,12 +43,16 @@ Route::middleware(['auth:api', 'role'])->group(function() {
     Route::get('logout', [AuthController::class, 'logout']); // !scope
     // Director
     Route::group(['middleware' => ['scope:director']], function() {
+        Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+        Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+        Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
         Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
         Route::put('/areas/{area}', [AreaController::class, 'update'])->name('areas.update');
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
         Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
         Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
+        Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
     });
     // end Director
 

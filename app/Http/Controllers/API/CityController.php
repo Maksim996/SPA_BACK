@@ -34,7 +34,7 @@ class CityController extends Controller
         $region = Region::findOrFail($id);
         $region->cities()->create(['city' => $city]);
 
-        return response()->json(['message' => __('City added successfully')], 201);
+        return response()->json(['message' => __('Data saved successfully')], 201);
     }
 
     /**
@@ -49,7 +49,7 @@ class CityController extends Controller
     }
 
     /**
-     * Update the specified City in storage.
+     * Update the city resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\City  $city
@@ -58,19 +58,19 @@ class CityController extends Controller
     public function update(StoreCity $request, City $city)
     {
         $validated = $request->validated();
-        $region = Region::find($validated['region_id']);
-        $region->cities()->save($city);
+        $city->update($validated);
         return response()->json(['message' => __('Data updated successfully')]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the city resource from storage.
      *
      * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return response()->json(['message' => __('Data deleted successfully')], 200);
     }
 }
