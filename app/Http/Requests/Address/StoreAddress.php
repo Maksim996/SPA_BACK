@@ -24,7 +24,7 @@ class StoreAddress extends FormRequest
     public function rules()
     {
         return [
-            'city_id' => 'required|integer|exists:App\City,id',
+            'city_id' => 'required|integer|exists:App\Models\City,id',
             'street' => 'required|string|max:250',
             'building' => 'required|string|max:45',
         ];

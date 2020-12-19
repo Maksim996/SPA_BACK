@@ -1,26 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class City extends Model
 {
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var [array]
      */
     protected $guarded = [];
 
     /**
-     * Get the cities for the Region.
+     * Get the Addresses for City.
      */
-    public function cities()
+    public function addresses()
     {
-        return $this->hasMany('\App\City')->orderBy('city', 'asc');
+        return $this->hasMany('\App\Models\Address');
     }
 }

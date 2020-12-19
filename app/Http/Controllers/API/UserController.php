@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\{User, Role, Info};
+use App\Models\{ User, Role, Info };
 use Illuminate\Http\Request;
 use App\Http\Requests\{ UpdateDirector, UpdatePassword };
-use Illuminate\Support\Facades\{Validator, Auth, Hash, Mail};
+use Illuminate\Support\Facades\{ Auth, Hash, Mail };
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Mail\Password;
 use App\Http\Resources\{ UserResource, UsersResource };
-use Illuminate\Support\{Str, Arr};
+use Illuminate\Support\{ Str, Arr };
 
 /**
  * @group User management
@@ -24,7 +24,7 @@ class UserController extends Controller
      * @group User management
      *
      * @apiResourceCollection App\Http\Resources\UsersResource
-     * @apiResourceModel App\User
+     * @apiResourceModel App\Models\User
      * @return \Illuminate\Http\Response
      */
     public function indexDirector()
@@ -73,7 +73,7 @@ class UserController extends Controller
      * @group User management
      * @urlParam id required The ID of the user.
      * @apiResource App\Http\Resources\UserResource
-     * @apiResourceModel App\User
+     * @apiResourceModel App\Models\User
      *
      * @param int $id
      * @return \Illuminate\Http\Response
@@ -96,7 +96,7 @@ class UserController extends Controller
      *   "message": "User not found."
      * }
      * @param App\Http\Requests\UpdateDirector $request
-     * @param  \App\User  $id
+     * @param  \App\Models\User $id
      * @return \Illuminate\Http\Response
      */
     public function updateDirector(UpdateDirector $request, $id)
@@ -134,7 +134,7 @@ class UserController extends Controller
      * Display profile the authenticated user.
      * @group User management
      * @apiResource App\Http\Resources\UserResource
-     * @apiResourceModel App\User
+     * @apiResourceModel App\Models\User
      *
      * @return \Illuminate\Http\Response
      */
@@ -152,7 +152,7 @@ class UserController extends Controller
      * @response status=404 scenario="user not found" {
      *   "message": "User not found."
      * }
-     * @param \App\User $id
+     * @param \App\Models\User $id
      * @return \Illuminate\Http\Resources
      */
     public function active(int $id)

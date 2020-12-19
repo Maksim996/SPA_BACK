@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +24,6 @@ class Area extends Model
      */
     public function regions()
     {
-        return $this->hasMany('\App\Region')->orderBy('region', 'asc');
+        return $this->hasMany('\App\Models\Region')->orderBy('region', 'asc');
     }
 }

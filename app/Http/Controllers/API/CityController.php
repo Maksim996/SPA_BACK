@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\{ City, Region };
+use App\Models\{ City, Region };
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Address\StoreCity;
 
 class CityController extends Controller
@@ -40,7 +39,7 @@ class CityController extends Controller
     /**
      * Display the city.
      *
-     * @param  \App\City  $city
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
     public function show(City $city)
@@ -52,7 +51,7 @@ class CityController extends Controller
      * Update the city resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCity $request, City $city)
@@ -65,7 +64,7 @@ class CityController extends Controller
     /**
      * Remove the city resource from storage.
      *
-     * @param  \App\City  $city
+     * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
     public function destroy(City $city)

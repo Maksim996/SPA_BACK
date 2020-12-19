@@ -25,12 +25,12 @@ class StoreRegion extends FormRequest
     public function rules()
     {
         return [
-            'area_id' => 'required|integer|exists:App\Area,id',
+            'area_id' => 'required|integer|exists:App\Models\Area,id',
             'region' => [
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('App\Region')->where('area_id', $this->area_id)
+                Rule::unique('App\Models\Region')->where('area_id', $this->area_id)
             ],
         ];
     }

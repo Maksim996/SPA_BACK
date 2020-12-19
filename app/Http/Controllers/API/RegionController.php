@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Address\StoreRegion;
-use App\{ Region, Area };
+use App\Models\{ Region, Area };
 
 class RegionController extends Controller
 {
@@ -23,9 +23,9 @@ class RegionController extends Controller
 
     /**
      * Store a newly created region in storage.
+     *
      * @param StoreArea $request
      * @return \Illuminate\http\Response
-     *
      */
     public function store(StoreRegion $request)
     {
@@ -36,13 +36,12 @@ class RegionController extends Controller
         ]);
 
         return response()->json(['message' => __('Region added successfully')], 201);
-
     }
     /**
      * Update the Region.
      *
      * @param StoreRegion $request
-     * @param \App\Region $region
+     * @param \App\Models\Region $region
      * @return \Illuminate\Http\Response
      */
     public function update(StoreRegion $request, Region $region)
@@ -54,7 +53,7 @@ class RegionController extends Controller
     /**
      * Remove the region resource from storage.
      *
-     * @param \App\Region $region
+     * @param \App\Models\Region $region
      * @return \illuminate\Http\Response
      */
     public function destroy(Region $region)

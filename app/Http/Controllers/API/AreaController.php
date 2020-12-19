@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Address\StoreArea;
-use App\Area; // !need move to dir Models;
+use App\Models\Area;
 
 class AreaController extends Controller
 {
@@ -42,14 +41,14 @@ class AreaController extends Controller
         $area = new Area;
         $area->area = $validated['area'];
         $area->save();
-        return response()->json(['message' => __('Area added successfully')], 201);
+        return response()->json(['message' => __('Data saved successfully')], 201);
     }
 
     /**
      * Update the Area.
      *
      * @param  StoreArea $request
-     * @param  \App\Area $area
+     * @param  \App\Models\Area $area
      * @return \Illuminate\Http\Response
      */
     public function update(StoreArea $request, Area $area)
@@ -63,7 +62,7 @@ class AreaController extends Controller
     /**
      * Remove the area resource from storage.
      *
-     * @param \App\Area $area
+     * @param \App\Models\Area $area
      * @return \Illuminate\Http\Response
      */
     public function destroy(Area $area)

@@ -29,7 +29,7 @@ class StoreArea extends FormRequest
                 'string',
                 'unique:areas,area',
                 'max:100',
-                Rule::unique('App\Area')->ignore($this->id)
+                Rule::unique('App\Models\Area')->ignore($this->id)
             ]
         ];
     }

@@ -4,10 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Address\StoreAddress;
-use App\Models\Address;
-use App\City;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use App\Models\{ Address, City };
 
 class AddressController extends Controller
 {
@@ -63,7 +60,7 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Address  $address
+     * @param  \App\Models\Address $address
      * @return \Illuminate\Http\Response
      */
     public function destroy(Address $address)

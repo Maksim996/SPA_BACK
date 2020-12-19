@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -49,7 +48,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\Role');
+        return $this->belongsTo('App\Models\Role');
     }
 
     /**
@@ -57,7 +56,7 @@ class User extends Authenticatable
      */
     public function info()
     {
-        return $this->hasOne('App\Info');
+        return $this->hasOne('App\Models\Info');
     }
 
     /**
