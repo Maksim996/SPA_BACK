@@ -60,4 +60,16 @@ class AreaController extends Controller
         return response()->json(['message' => __('Data updated successfully')], 200);
     }
 
+    /**
+     * Remove the area resource from storage.
+     *
+     * @param \App\Area $area
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Area $area)
+    {
+        $area->delete();
+        return response()->json(['message' => __('Data deleted successfully')], 200);
+    }
+
 }

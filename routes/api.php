@@ -48,8 +48,10 @@ Route::middleware(['auth:api', 'role'])->group(function() {
         Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
         Route::post('/areas', [AreaController::class, 'store'])->name('areas.store');
         Route::put('/areas/{area}', [AreaController::class, 'update'])->name('areas.update');
+        Route::delete('/areas/{area}', [AreaController::class, 'destroy'])->name('areas.destroy');
         Route::post('/regions', [RegionController::class, 'store'])->name('regions.store');
         Route::put('/regions/{region}', [RegionController::class, 'update'])->name('regions.update');
+        Route::delete('/regions/{region}', [RegionController::class, 'destroy'])->name('regions.destroy');
         Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
         Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');

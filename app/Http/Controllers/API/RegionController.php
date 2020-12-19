@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Address\StoreRegion;
 use App\{ Region, Area };
 
@@ -48,10 +47,20 @@ class RegionController extends Controller
      */
     public function update(StoreRegion $request, Region $region)
     {
-        $validated = $request->validated();
-        $area = Area::find($validated['area_id']);
-        $area->regions()->save($region);
+        $region->update( $request->validated() );
         return response()->json(['message' => __('Data updated successfully')], 200);
+    }
+
+    /**
+     * Remove the region resource from storage.
+     *
+     * @param \App\Region $region
+     * @return \illuminate\Http\Response
+     */
+    public function destroy(Region $region)
+    {
+        $region->delete();
+        return response()->json(['message' => __('Data deleted successfully')], 200);
     }
 
 }
